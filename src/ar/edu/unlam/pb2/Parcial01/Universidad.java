@@ -7,9 +7,9 @@ public class Universidad {
 	private String nombre;
 	private ArrayList<Carrera> carreras;
 	
-	public Universidad(String nombre, ArrayList<Carrera> carreras) {
+	public Universidad(String nombre) {
 		this.nombre = nombre;
-		this.carreras = carreras;
+		this.carreras = new ArrayList<Carrera>();
 	}	
 
 }

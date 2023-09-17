@@ -8,36 +8,36 @@ public class Carrera {
 	private Integer id;
 	private String nombre;
 	private ArrayList<Materia> materias;
-	private ArrayList<Alumno> alumnos;
+	//private ArrayList<Alumno> alumnos;
 	
-	public Carrera(Integer id, String nombre, ArrayList<Materia> materias) {
-		super();
+	public Carrera(Integer id, String nombre) {
+		//super();
 		this.id = id;
 		this.nombre = nombre;
-		this.materias = materias;
+		this.materias = new ArrayList<Materia>();
 	}
 	
-     public void agregarMateria() {
+    public void agregarMateria() {
 		
 	}
-     public void agregarAlumno() {
+     
+    public void agregarAlumno() {
  		
  	}
      
-     public String obtenerMateriasAprobadasParaUnAlumno(Integer idAlumno) {
-    	 return "nop";
-     }
+    public String obtenerMateriasAprobadasParaUnAlumno(Integer idAlumno) {
+    	return "nop";
+    }
 	
-	public int obtenerNota(Integer idAlumno, Integer idMateria) {
+	public Integer obtenerNota(Integer idAlumno, Integer idMateria) {
 		return 0;
-		
-	}
+	} // ?
+	
 	public String obtenerMateriasQueFaltanCursarParaUnAlumno(Integer idAlumno) {
 		return "nop";
 	}
-	public int calcularPromedio(Integer idAlumno) {
-		return 0;
+	
+	public Double calcularPromedio(Integer idAlumno) {
+		return 0.0;
 	}
 }
-
-

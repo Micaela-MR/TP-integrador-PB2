@@ -2,7 +2,6 @@ package ar.edu.unlam.pb2.Parcial01;
 
 import java.util.ArrayList;
 
-
 public class Comision {
 
 	private Integer id;
@@ -14,14 +13,13 @@ public class Comision {
 	private Aula aula;
 	
 	
-	public Comision(Integer id, CicloLectivo ciclo, String turno, ArrayList<Alumno> alumnosComision,
-			ArrayList<Profesor> profesores, Materia materia) {
-		super();
+	public Comision(Integer id, CicloLectivo ciclo, String turno, Materia materia) {
+		//super();
 		this.id = id;
 		this.ciclo = ciclo;
 		this.turno = turno;
-		this.alumnosComision = alumnosComision;
-		this.profesores = profesores;
+		this.alumnosComision = new ArrayList<Alumno>();
+		this.profesores = new ArrayList<Profesor>();
 		this.materia = materia;
 	}
 
@@ -31,11 +29,7 @@ public class Comision {
 		
 	}
 	
-	public void agregarDocentesAComision(){
-		
-	}
-	
-	public void inscribirAlumnoAComision (Integer dni, Integer idComision){
+	public void inscribirAlumnoAComision (Integer dniAlumno, Integer idComision){
 		
 	}
 	
@@ -43,7 +37,7 @@ public class Comision {
 		
 	}
 	
-	public int asignarAulaAlaComision(Integer idComision, Integer dniDocente) {
+	public Integer asignarAulaAlaComision(Integer idComision, Integer dniDocente) {
 		return 0;
 	}
 	

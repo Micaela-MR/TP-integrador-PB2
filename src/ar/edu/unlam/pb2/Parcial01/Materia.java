@@ -6,22 +6,22 @@ public class Materia {
 
 	private Integer id;
 	private String nombre;
-	private Comision comision;
+	private ArrayList <Comision>comision;
 	private ArrayList <Profesor>docentes;
 	
 	
-	public Materia(Integer id, String nombre, Comision comision, ArrayList<Profesor> docentes) {
-		super();
+	public Materia(Integer id, String nombre) {
+		//super();
 		this.id = id;
 		this.nombre = nombre;
-		this.comision = comision;
-		this.docentes = docentes;
+		this.comision = new ArrayList <Comision>();
+		this.docentes = new ArrayList<Profesor>();
 	}
 
 
 	public void agregarComision(){
 		
-		}
+	}
 	
 	public void agregarDocentes() {
 		
@@ -37,5 +37,5 @@ public class Materia {
 	
 	public int registrarNota (Integer idComision, Integer idAlumno, Integer nota) {
 		return 0;
-	}
+	} //?
 }
