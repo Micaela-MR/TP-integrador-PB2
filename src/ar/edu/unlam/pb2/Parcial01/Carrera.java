@@ -10,34 +10,79 @@ public class Carrera {
 	private ArrayList<Materia> materias;
 	private ArrayList<Alumno> alumnos;
 	
-	public Carrera(Integer id, String nombre, ArrayList<Materia> materias) {
-		super();
+	public Carrera(Integer id, String nombre) {
+		//super();
 		this.id = id;
 		this.nombre = nombre;
+		this.materias = new ArrayList<Materia>();
+		this.alumnos = new ArrayList<Alumno>();
+	}
+	
+	
+    public Integer getId() {
+		return id;
+	}
+
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+
+	public String getNombre() {
+		return nombre;
+	}
+
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+
+	public ArrayList<Materia> getMaterias() {
+		return materias;
+	}
+
+
+	public void setMaterias(ArrayList<Materia> materias) {
 		this.materias = materias;
 	}
-	
-     public void agregarMateria() {
-		
+
+
+	public ArrayList<Alumno> getAlumnos() {
+		return alumnos;
 	}
-     public void agregarAlumno() {
- 		
+
+
+	public void setAlumnos(ArrayList<Alumno> alumnos) {
+		this.alumnos = alumnos;
+	}
+	
+	
+	
+
+
+	public Boolean agregarMateria(Materia materia) {
+		return null;
+	}
+     
+    public Boolean agregarAlumno(Alumno alumno) {
+		return null;
  	}
      
-     public String obtenerMateriasAprobadasParaUnAlumno(Integer idAlumno) {
-    	 return "nop";
-     }
+    public String obtenerMateriasAprobadasParaUnAlumno(Integer idAlumno) {
+    	return "nop";
+    }
 	
-	public int obtenerNota(Integer idAlumno, Integer idMateria) {
+	public Integer obtenerNota(Integer idAlumno, Integer idMateria) {
 		return 0;
-		
 	}
+	
 	public String obtenerMateriasQueFaltanCursarParaUnAlumno(Integer idAlumno) {
 		return "nop";
 	}
-	public int calcularPromedio(Integer idAlumno) {
-		return 0;
+	
+	public Double calcularPromedio(Integer idAlumno) {
+		return 0.0;
 	}
 }
-
-
