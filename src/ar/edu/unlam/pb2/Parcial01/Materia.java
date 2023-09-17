@@ -18,6 +18,48 @@ public class Materia {
 		this.docentes = new ArrayList<Profesor>();
 	}
 
+	public Integer getId() {
+		return id;
+	}
+
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+
+	public String getNombre() {
+		return nombre;
+	}
+
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+
+	public ArrayList<Comision> getComision() {
+		return comision;
+	}
+
+
+	public void setComision(ArrayList<Comision> comision) {
+		this.comision = comision;
+	}
+
+
+	public ArrayList<Profesor> getDocentes() {
+		return docentes;
+	}
+
+
+	public void setDocentes(ArrayList<Profesor> docentes) {
+		this.docentes = docentes;
+	}
+
+
+	
+
 
 	public void agregarComision(){
 		
@@ -37,5 +79,5 @@ public class Materia {
 	
 	public int registrarNota (Integer idComision, Integer idAlumno, Integer nota) {
 		return 0;
-	} //?
+	}
 }

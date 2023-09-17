@@ -22,9 +22,69 @@ public class Comision {
 		this.profesores = new ArrayList<Profesor>();
 		this.materia = materia;
 	}
+	
+	public Integer getId() {
+		return id;
+	}
+
+
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+
+
+	public ArrayList<Alumno> getAlumnosComision() {
+		return alumnosComision;
+	}
+
+
+
+	public void setAlumnosComision(ArrayList<Alumno> alumnosComision) {
+		this.alumnosComision = alumnosComision;
+	}
+
+
+
+	public ArrayList<Profesor> getProfesores() {
+		return profesores;
+	}
+
+
+
+	public void setProfesores(ArrayList<Profesor> profesores) {
+		this.profesores = profesores;
+	}
+
+
+
+	public Materia getMateria() {
+		return materia;
+	}
+
+
+
+	public void setMateria(Materia materia) {
+		this.materia = materia;
+	}
+
+
+
+	public Aula getAula() {
+		return aula;
+	}
+
+
+
+	public void setAula(Aula aula) {
+		this.aula = aula;
+	}
+
 
 	
 	
+
 	public void agregarCicloLectivo() {
 		
 	}
