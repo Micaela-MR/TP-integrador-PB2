@@ -5,12 +5,12 @@ import java.util.ArrayList;
 
 public class Carrera {
 	
-	private int id;
+	private Integer id;
 	private String nombre;
 	private ArrayList<Materia> materias;
 	private ArrayList<Alumno> alumnos;
 	
-	public Carrera(int id, String nombre, ArrayList<Materia> materias) {
+	public Carrera(Integer id, String nombre, ArrayList<Materia> materias) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -24,18 +24,18 @@ public class Carrera {
  		
  	}
      
-     public String obtenerMateriasAprobadasParaUnAlumno(int idAlumno) {
+     public String obtenerMateriasAprobadasParaUnAlumno(Integer idAlumno) {
     	 return "nop";
      }
 	
-	public int obtenerNota(int idAlumno, int idMateria) {
+	public int obtenerNota(Integer idAlumno, Integer idMateria) {
 		return 0;
 		
 	}
-	public String obtenerMateriasQueFaltanCursarParaUnAlumno(int idAlumno) {
+	public String obtenerMateriasQueFaltanCursarParaUnAlumno(Integer idAlumno) {
 		return "nop";
 	}
-	public int calcularPromedio(int idAlumno) {
+	public int calcularPromedio(Integer idAlumno) {
 		return 0;
 	}
 }

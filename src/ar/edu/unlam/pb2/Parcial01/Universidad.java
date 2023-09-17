@@ -8,11 +8,8 @@ public class Universidad {
 	private ArrayList<Carrera> carreras;
 	
 	public Universidad(String nombre, ArrayList<Carrera> carreras) {
-	
 		this.nombre = nombre;
 		this.carreras = carreras;
-	}
-	
-	
+	}	
 
 }

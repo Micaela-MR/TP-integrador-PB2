@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Comision {
 
-	private int id;
+	private Integer id;
 	private CicloLectivo ciclo;
 	private String turno;
 	private ArrayList<Alumno> alumnosComision;
@@ -14,7 +14,7 @@ public class Comision {
 	private Aula aula;
 	
 	
-	public Comision(int id, CicloLectivo ciclo, String turno, ArrayList<Alumno> alumnosComision,
+	public Comision(Integer id, CicloLectivo ciclo, String turno, ArrayList<Alumno> alumnosComision,
 			ArrayList<Profesor> profesores, Materia materia) {
 		super();
 		this.id = id;
@@ -35,15 +35,15 @@ public class Comision {
 		
 	}
 	
-	public void inscribirAlumnoAComision (int dni, int idComision){
+	public void inscribirAlumnoAComision (Integer dni, Integer idComision){
 		
 	}
 	
-	public void asignarProfesorAlaComision(int idComision, int dniDocente) {
+	public void asignarProfesorAlaComision(Integer idComision, Integer dniDocente) {
 		
 	}
 	
-	public int asignarAulaAlaComision(int idComision, int dniDocente) {
+	public int asignarAulaAlaComision(Integer idComision, Integer dniDocente) {
 		return 0;
 	}
 	

@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 public class Materia {
 
-	private int id;
+	private Integer id;
 	private String nombre;
 	private Comision comision;
 	private ArrayList <Profesor>docentes;
 	
 	
-	public Materia(int id, String nombre, Comision comision, ArrayList<Profesor> docentes) {
+	public Materia(Integer id, String nombre, Comision comision, ArrayList<Profesor> docentes) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -27,15 +27,15 @@ public class Materia {
 		
 	}
 	
-	public void agregarCorrelatividad(int idMateria, int idCorrelativa) {
+	public void agregarCorrelatividad(Integer idMateria, Integer idCorrelativa) {
 		
 	}
 	
-	public void eliminarCorrelatividad(int idMateria, int idCorrelativaAELiminar) {
+	public void eliminarCorrelatividad(Integer idMateria, Integer idCorrelativaAELiminar) {
 		
 	}
 	
-	public int registrarNota (int idComision, int idAlumno, int nota) {
+	public int registrarNota (Integer idComision, Integer idAlumno, Integer nota) {
 		return 0;
 	}
 }
