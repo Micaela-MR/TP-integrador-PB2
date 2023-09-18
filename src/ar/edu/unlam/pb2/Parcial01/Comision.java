@@ -10,19 +10,19 @@ public class Comision {
 	private String turno;
 	private ArrayList<Alumno> alumnosComision;
 	private ArrayList<Profesor> profesores;
-	private Materia materia;
 	private Aula aula;
 	
 	
 	public Comision(Integer id, CicloLectivo ciclo, String turno, ArrayList<Alumno> alumnosComision,
-			ArrayList<Profesor> profesores, Materia materia) {
+			ArrayList<Profesor> profesores) {
 		super();
 		this.id = id;
 		this.ciclo = ciclo;
 		this.turno = turno;
-		this.alumnosComision = alumnosComision;
-		this.profesores = profesores;
-		this.materia = materia;
+		this.alumnosComision = new ArrayList<Alumno>();
+		this.profesores = new ArrayList<Profesor>();
+		this.aula = asignarAulaAlaComision(0,0);
+		
 	}
 
 	
@@ -43,8 +43,8 @@ public class Comision {
 		
 	}
 	
-	public int asignarAulaAlaComision(Integer idComision, Integer dniDocente) {
-		return 0;
+	public Aula asignarAulaAlaComision(Integer idComision, Integer dniDocente) {
+		return null;
 	}
 	
 	
