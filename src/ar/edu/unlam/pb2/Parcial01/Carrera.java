@@ -18,10 +18,26 @@ public class Carrera {
 		this.alumnos = new ArrayList<Alumno>();
 	}
 	
-     public void agregarMateria() {
+     public Boolean agregarMateria(Materia materia) {
+    	 if(!buscarMateriaPorId(materia.getId())) {
+    		 materias.add(materia);
+    		 return true;
+    	 }else {
+    		 return false;
+    	 }
 		
 	}
-     public void agregarAlumno() {
+     private boolean buscarMateriaPorId(Integer idMateria) {
+		Boolean materiaEncontradaPorId = false;
+		for (int i = 0; i < materias.size(); i++) {
+			if(this.materias.get(i).getId()== idMateria) {
+				materiaEncontradaPorId = true;
+			}
+		}
+		return materiaEncontradaPorId;
+	}
+
+	public void agregarAlumno() {
  		
  	}
      

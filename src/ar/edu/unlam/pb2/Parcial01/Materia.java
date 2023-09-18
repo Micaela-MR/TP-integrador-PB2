@@ -10,12 +10,12 @@ public class Materia {
 	private ArrayList <Profesor>docentes;
 	
 	
-	public Materia(Integer id, String nombre, Comision comision, ArrayList<Profesor> docentes) {
+	public Materia(Integer id, String nombre, Comision comision) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.comision = comision;
-		this.docentes = docentes;
+		this.docentes = new ArrayList<Profesor>();
 	}
 
 
@@ -38,4 +38,45 @@ public class Materia {
 	public int registrarNota (Integer idComision, Integer idAlumno, Integer nota) {
 		return 0;
 	}
+
+
+	public Integer getId() {
+		return id;
+	}
+
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+
+	public String getNombre() {
+		return nombre;
+	}
+
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+
+	public Comision getComision() {
+		return comision;
+	}
+
+
+	public void setComision(Comision comision) {
+		this.comision = comision;
+	}
+
+
+	public ArrayList<Profesor> getDocentes() {
+		return docentes;
+	}
+
+
+	public void setDocentes(ArrayList<Profesor> docentes) {
+		this.docentes = docentes;
+	}
+	
 }
