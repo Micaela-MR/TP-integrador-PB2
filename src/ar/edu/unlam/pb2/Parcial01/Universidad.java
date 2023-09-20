@@ -21,18 +21,20 @@ public class Universidad {
 	
 	public Boolean agregarCicloLectivo(CicloLectivo ciclo1) {
 		Boolean seAgrego = false;
-	   
+		for (int i = 0; i < ciclo.size(); i++) {
 	    	if(!buscarCicloLectivoPorId(ciclo1.getId())) {
-	    		if(!seSuperponenLasFechas(ciclo1.getFechaInicioCicloLectivo(), ciclo1.getFechaFinalizacionCicloLectivo())) {
+	    		Date fechaInicioCiclo1 = ciclo1.getFechaInicioCicloLectivo();
+	    		Date fechaFinCiclo1 = ciclo1.getFechaFinalizacionCicloLectivo();
+	    		Date fechaInicioCicloi = this.ciclo.get(i).getFechaInicioCicloLectivo();
+	    		Date fechaFinCicloi = this.ciclo.get(i).getFechaFinalizacionCicloLectivo();
+	    		if(!seSuperponenLasFechas(fechaInicioCiclo1, fechaInicioCicloi, fechaFinCiclo1,fechaFinCicloi)) {
 	    			ciclo.add(ciclo1);
 	    			seAgrego = true;
 	    		}
 	    	}else {
 	    		seAgrego = false;
-	    	}
-		
-		
-			
+	    	}	
+		}
 			return seAgrego;
 		}
 	public boolean buscarCicloLectivoPorId(Integer idCiclo) {
@@ -50,13 +52,16 @@ public class Universidad {
 		return fechaFormateada;
 	}
 	
-	public Boolean seSuperponenLasFechas(Date fecha1, Date fecha2) {
-		
-		if(fecha1.before(fecha2)) {
-			return false;
-		}else {
+	public Boolean seSuperponenLasFechas(Date fechaInicio1, Date fechaInicio2, Date fechaFin1, Date fechaFin2) {
+		Boolean seSuperponen = false;
+		if(fechaInicio1.before(fechaFin2) || fechaInicio1.equals(fechaFin2)) {
+			if(fechaFin1.after(fechaInicio2) || fechaFin1.equals(fechaInicio2)){
 			return true;
-		}
+		}else {
+			return false;
+		}	
+	    }
+		return seSuperponen;
 	}
 	
 
