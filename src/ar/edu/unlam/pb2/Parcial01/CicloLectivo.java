@@ -5,13 +5,13 @@ import java.util.Date;
 public class CicloLectivo {
 
 	private Integer id;
-	private String fechaInicioCicloLectivo;
-	private String fechaFinalizacionCicloLectivo;
-	private String fechaInicioInscripcion;
-	private String fechaFinalizacionInscripcion;
+	private Date fechaInicioCicloLectivo;
+	private Date fechaFinalizacionCicloLectivo;
+	private Date fechaInicioInscripcion;
+	private Date fechaFinalizacionInscripcion;
 	
-	public CicloLectivo(Integer id, String fechaInicioCicloLectivo, String fechaFinalizacionCicloLectivo,
-			String fechaInicioInscripcion, String fechaFinalizacionInscripcion) {
+	public CicloLectivo(Integer id, Date fechaInicioCicloLectivo, Date fechaFinalizacionCicloLectivo,
+			Date fechaInicioInscripcion, Date fechaFinalizacionInscripcion) {
 		this.id = id;
 		this.fechaInicioCicloLectivo = fechaInicioCicloLectivo;
 		this.fechaFinalizacionCicloLectivo = fechaFinalizacionCicloLectivo;
@@ -27,37 +27,39 @@ public class CicloLectivo {
 		this.id = id;
 	}
 
-	public String getFechaInicioCicloLectivo() {
+	public Date getFechaInicioCicloLectivo() {
 		return fechaInicioCicloLectivo;
 	}
 
-	public void setFechaInicioCicloLectivo(String fechaInicioCicloLectivo) {
+	public void setFechaInicioCicloLectivo(Date fechaInicioCicloLectivo) {
 		this.fechaInicioCicloLectivo = fechaInicioCicloLectivo;
 	}
 
-	public String getFechaFinalizacionCicloLectivo() {
+	public Date getFechaFinalizacionCicloLectivo() {
 		return fechaFinalizacionCicloLectivo;
 	}
 
-	public void setFechaFinalizacionCicloLectivo(String fechaFinalizacionCicloLectivo) {
+	public void setFechaFinalizacionCicloLectivo(Date fechaFinalizacionCicloLectivo) {
 		this.fechaFinalizacionCicloLectivo = fechaFinalizacionCicloLectivo;
 	}
 
-	public String getFechaInicioInscripcion() {
+	public Date getFechaInicioInscripcion() {
 		return fechaInicioInscripcion;
 	}
 
-	public void setFechaInicioInscripcion(String fechaInicioInscripcion) {
+	public void setFechaInicioInscripcion(Date fechaInicioInscripcion) {
 		this.fechaInicioInscripcion = fechaInicioInscripcion;
 	}
 
-	public String getFechaFinalizacionInscripcion() {
+	public Date getFechaFinalizacionInscripcion() {
 		return fechaFinalizacionInscripcion;
 	}
 
-	public void setFechaFinalizacionInscripcion(String fechaFinalizacionInscripcion) {
+	public void setFechaFinalizacionInscripcion(Date fechaFinalizacionInscripcion) {
 		this.fechaFinalizacionInscripcion = fechaFinalizacionInscripcion;
 	}
+
+
 	
 	
 }
