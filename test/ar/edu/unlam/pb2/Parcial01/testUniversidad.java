@@ -14,7 +14,7 @@ public class testUniversidad {
 			Universidad unlam = new Universidad("Unlam");
 			Carrera ingenieria = new Carrera(01, "ingenieria");
 			Comision borgeat = new Comision(3900,"noche");
-			Materia programacion = new Materia(01, "programacion", borgeat);
+			Materia programacion = new Materia(01, "programacion", ingenieria, borgeat);
 			
 			unlam.agregarCarrera(ingenieria);
 			Boolean ve = ingenieria.agregarMateria(programacion);
@@ -53,9 +53,23 @@ public class testUniversidad {
 			Universidad unlam = new Universidad("Unlam");
 			Carrera ingenieria = new Carrera(01, "ingenieria");
 			Comision borgeat = new Comision(3900,"noche");
-			Materia programacion = new Materia(01, "programacion", borgeat);
+			Materia programacion = new Materia(01, "programacion",ingenieria, borgeat);
 			Profesor JuanMa = new Profesor(02, 35555555, "JuanManuel", "Monteagudo" );
 			Boolean ve = programacion.agregarDocentes(JuanMa);
+			
+			assertTrue(ve);
+		}
+		
+		@Test 
+		public void queSePuedaAgregarUnaMateriaCorrelativa() {
+			Universidad unlam = new Universidad("Unlam");
+			Carrera ingenieria = new Carrera(01, "ingenieria");
+			Comision borgeat = new Comision(3900,"noche");
+			Materia programacion1 = new Materia(01, "programacion 1",ingenieria, borgeat);
+			Materia programacion2 = new Materia(02, "programacion 1",ingenieria, borgeat);
+			ingenieria.agregarMateria(programacion1);
+			ingenieria.agregarMateria(programacion2);
+			Boolean ve = ingenieria.agregarCorrelatividad((Integer)01, (Integer)02);
 			
 			assertTrue(ve);
 		}

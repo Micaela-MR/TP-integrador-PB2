@@ -2,6 +2,7 @@ package ar.edu.unlam.pb2.Parcial01;
 
 import java.util.ArrayList;
 import java.util.Date;
+import ar.edu.unlam.pb2.Parcial01.Carrera;
 
 public class Materia {
 
@@ -9,14 +10,19 @@ public class Materia {
 	private String nombre;
 	private Comision comision;
 	private ArrayList <Profesor>docentes;
+	private ArrayList <Materia> correlativas;
+	private Carrera carrera;
 	
 	
-	public Materia(Integer id, String nombre, Comision comision) {
+	
+	public Materia(Integer id, String nombre, Carrera carrera, Comision comision) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
+		this.carrera = carrera;
 		this.comision = comision;
 		this.docentes = new ArrayList<Profesor>();
+		this.correlativas = new ArrayList<Materia>();
 	}
 
 
@@ -46,8 +52,18 @@ public class Materia {
 	}
 	
 	
-	public void agregarCorrelatividad(Integer idMateria, Integer idCorrelativa) {
-		
+	public Boolean agregarCorrelatividad(Integer idMateria, Integer idCorrelativa) {
+		Boolean seAgregoCorrelativa = false;
+		Carrera carreraDeOrigen = getCarrera();
+        ArrayList <Materia> materiasCarrera = carreraDeOrigen.getMaterias();
+        for (int i = 0; i < materiasCarrera.size(); i++) {
+			if(materiasCarrera.get(i).getId() == idMateria && materiasCarrera.get(i).getId() == idCorrelativa ) {
+				Materia correlativaNueva = materiasCarrera.get(i);
+				correlativas.add(correlativaNueva);
+				 seAgregoCorrelativa = true;
+			}
+		}
+		return seAgregoCorrelativa;
 	}
 	
 	public void eliminarCorrelatividad(Integer idMateria, Integer idCorrelativaAELiminar) {
@@ -97,5 +113,26 @@ public class Materia {
 	public void setDocentes(ArrayList<Profesor> docentes) {
 		this.docentes = docentes;
 	}
+
+
+	public ArrayList<Materia> getCorrelativas() {
+		return correlativas;
+	}
+
+
+	public void setCorrelativas(ArrayList<Materia> correlativas) {
+		this.correlativas = correlativas;
+	}
+
+
+	public Carrera getCarrera() {
+		return carrera;
+	}
+
+
+	public void setCarrera(Carrera carrera) {
+		this.carrera = carrera;
+	}
+	
 	
 }

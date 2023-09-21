@@ -8,7 +8,9 @@ public class Carrera {
 	private Integer id;
 	private String nombre;
 	private ArrayList<Materia> materias;
+	private ArrayList <Materia> correlativas;
 	private ArrayList<Alumno> alumnos;
+	
 	
 	public Carrera(Integer id, String nombre) {
 		super();
@@ -16,6 +18,7 @@ public class Carrera {
 		this.nombre = nombre;
 		this.materias = new ArrayList<Materia>();
 		this.alumnos = new ArrayList<Alumno>();
+		this.correlativas = new ArrayList<Materia>();
 	}
 	
      public Boolean agregarMateria(Materia materia) {
@@ -28,14 +31,37 @@ public class Carrera {
 		
 	}
      private boolean buscarMateriaPorId(Integer idMateria) {
-		Boolean materiaEncontradaPorId = false;
-		for (int i = 0; i < materias.size(); i++) {
-			if(this.materias.get(i).getId()== idMateria) {
-				materiaEncontradaPorId = true;
-			}
-		}
-		return materiaEncontradaPorId;
-	}
+ 		Boolean materiaEncontradaPorId = false;
+ 		for (int i = 0; i < materias.size(); i++) {
+ 			if(this.materias.get(i).getId()== idMateria) {
+ 				materiaEncontradaPorId = true;
+ 			}
+ 		}
+ 		return materiaEncontradaPorId;
+ 	}
+      private Materia buscarMateriaPorIdQueDevuelveLaMateria(Integer idMateria) {
+ 		Materia materiaEncontradaPorId = null;
+ 		for (int i = 0; i < materias.size(); i++) {
+ 			if(this.materias.get(i).getId()== idMateria) {
+ 				materiaEncontradaPorId = this.materias.get(i);
+ 			}
+ 		}
+ 		return materiaEncontradaPorId;
+ 	}
+      
+      public Boolean agregarCorrelatividad(Integer idMateria, Integer idCorrelativa) {
+  		Boolean seAgregoCorrelativa = false;
+          for (int i = 0; i < materias.size(); i++) {
+        	  for (int j = 0; j < materias.size(); j++) {
+  			if(materias.get(i).getId() == idMateria && materias.get(j).getId() == idCorrelativa ) {
+  				Materia correlativaNueva = buscarMateriaPorIdQueDevuelveLaMateria(idCorrelativa);
+  				correlativas.add(correlativaNueva);
+  				 seAgregoCorrelativa = true;
+  			}
+  		}
+          }
+  		return seAgregoCorrelativa;
+  	}
 
 	public void agregarAlumno() {
  		

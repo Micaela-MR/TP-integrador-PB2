@@ -10,6 +10,7 @@ public class Comision {
 	private String turno;
 	private ArrayList<Alumno> alumnosComision;
 	private ArrayList<Profesor> profesores;
+	
 	private Aula aula;
 	
 	
@@ -27,16 +28,11 @@ public class Comision {
 	
 	
 	
-	
-	public void agregarDocentesAComision(){
-		
-	}
-	
 	public void inscribirAlumnoAComision (Integer dni, Integer idComision){
 		
 	}
 	
-	public void asignarProfesorAlaComision(Integer idComision, Integer dniDocente) {
+	public void asignarDocentesAlaComision(Integer idComision, Integer dniDocente) {
 		
 	}
 	
@@ -45,6 +41,7 @@ public class Comision {
 	}
 
 
+	
 
 	public Integer getId() {
 		return id;
