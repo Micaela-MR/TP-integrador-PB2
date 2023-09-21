@@ -21,22 +21,20 @@ public class Universidad {
 	
 	public Boolean agregarCicloLectivo(CicloLectivo ciclo1) {
 		Boolean seAgrego = false;
+		
 		for (int i = 0; i < ciclo.size(); i++) {
-	    	if(!buscarCicloLectivoPorId(ciclo1.getId())) {
-	    		Date fechaInicioCiclo1 = ciclo1.getFechaInicioCicloLectivo();
-	    		Date fechaFinCiclo1 = ciclo1.getFechaFinalizacionCicloLectivo();
-	    		Date fechaInicioCicloi = this.ciclo.get(i).getFechaInicioCicloLectivo();
-	    		Date fechaFinCicloi = this.ciclo.get(i).getFechaFinalizacionCicloLectivo();
-	    		if(!seSuperponenLasFechas(fechaInicioCiclo1, fechaInicioCicloi, fechaFinCiclo1,fechaFinCicloi)) {
+			Date fechaInicioCiclo1 = ciclo1.getFechaInicioCicloLectivo();
+			Date fechaFinCiclo1 = ciclo1.getFechaFinalizacionCicloLectivo();
+			Date fechaInicioCicloi = this.ciclo.get(i).getFechaInicioCicloLectivo();
+			Date fechaFinCicloi = this.ciclo.get(i).getFechaFinalizacionCicloLectivo();
+	    	if(!this.buscarCicloLectivoPorId(ciclo1.getId()) && !this.seSuperponenLasFechas(fechaInicioCiclo1, fechaInicioCicloi, fechaFinCiclo1,fechaFinCicloi)){	
 	    			ciclo.add(ciclo1);
 	    			seAgrego = true;
-	    		}
-	    	}else {
-	    		seAgrego = false;
-	    	}	
-		}
+	    		}	    	
+		   }
 			return seAgrego;
 		}
+	
 	public boolean buscarCicloLectivoPorId(Integer idCiclo) {
 		Boolean cicloEncontradoPorId = false;
 		for (int i = 0; i < ciclo.size(); i++) {
@@ -47,15 +45,15 @@ public class Universidad {
 		return cicloEncontradoPorId;
 	}
 	public Date formatoDeStringADate(String fecha) throws ParseException {
-		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/YYYY");
+		SimpleDateFormat formato = new SimpleDateFormat("dd/mm/yyyy");
 		Date fechaFormateada = formato.parse(fecha);
 		return fechaFormateada;
 	}
 	
 	public Boolean seSuperponenLasFechas(Date fechaInicio1, Date fechaInicio2, Date fechaFin1, Date fechaFin2) {
 		Boolean seSuperponen = false;
-		if(fechaInicio1.before(fechaFin2) || fechaInicio1.equals(fechaFin2)) {
-			if(fechaFin1.after(fechaInicio2) || fechaFin1.equals(fechaInicio2)){
+		if(fechaInicio1.before(fechaFin2) && fechaInicio1.equals(fechaFin2)) {
+			if(fechaFin1.after(fechaInicio2) && fechaFin1.equals(fechaInicio2)){
 			return true;
 		}else {
 			return false;
@@ -66,9 +64,11 @@ public class Universidad {
 	
 
 	public Date establecerFechas(int dia, int mes, int year) {
+		
 		Calendar calendar = new GregorianCalendar();
 		calendar.set(year, mes, dia);
 		Date fecha = calendar.getTime();
+		
 		return fecha;
 	}
 	
