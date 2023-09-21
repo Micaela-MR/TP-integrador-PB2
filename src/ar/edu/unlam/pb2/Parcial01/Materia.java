@@ -1,6 +1,7 @@
 package ar.edu.unlam.pb2.Parcial01;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Materia {
 
@@ -23,9 +24,27 @@ public class Materia {
 		
 		}
 	
-	public void agregarDocentes() {
+	public Boolean agregarDocentes(Profesor docenteAgregar) {
+        Boolean seAgrego = false;	
+	
+	    	if(!this.buscarDocentePorDni(docenteAgregar)){	
+	    			docentes.add(docenteAgregar);
+	    			seAgrego = true;
+	    		}	    	
+		   
+			return seAgrego;
 		
 	}
+	public Boolean buscarDocentePorDni(Profesor docente) {
+		Boolean profeEncontradoPorDni = false;
+		for (int i = 0; i < docentes.size(); i++) {
+			if(this.docentes.get(i).getDni()== docente.getDni()) {
+				profeEncontradoPorDni = true;
+			}
+		}
+		return profeEncontradoPorDni;
+	}
+	
 	
 	public void agregarCorrelatividad(Integer idMateria, Integer idCorrelativa) {
 		

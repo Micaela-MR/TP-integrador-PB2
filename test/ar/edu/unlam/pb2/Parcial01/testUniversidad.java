@@ -48,6 +48,18 @@ public class testUniversidad {
 			assertFalse(ve);
 		}
 		
+		@Test
+		public void queSePuedaAgregarUnDocenteAMateria() {
+			Universidad unlam = new Universidad("Unlam");
+			Carrera ingenieria = new Carrera(01, "ingenieria");
+			Comision borgeat = new Comision(3900,"noche");
+			Materia programacion = new Materia(01, "programacion", borgeat);
+			Profesor JuanMa = new Profesor(02, 35555555, "JuanManuel", "Monteagudo" );
+			Boolean ve = programacion.agregarDocentes(JuanMa);
+			
+			assertTrue(ve);
+		}
+		
 		
 		
 	}
