@@ -72,7 +72,7 @@ public class testUniversidad {
 	@Test
 	public void noAgregarDosCiclosLectivosConUnMismoId() throws ParseException {
 		Universidad unlam = new Universidad ("UNLaM");
-		CicloLectivo primerCuatri = new CicloLectivo (1, "31-07-2023", "03-08-2023", "14-08-2023", "02-12-2023");
+		CicloLectivo primerCuatri = new CicloLectivo (1, "03-03-2023", "10-03-2023", "27-03-2023", "15-07-2023");
 		CicloLectivo segundoCuatri = new CicloLectivo (1, "31-07-2023", "03-08-2023", "14-08-2023", "02-12-2023");
 		
 		unlam.agregarCicloLectivo(primerCuatri);
@@ -88,7 +88,17 @@ public class testUniversidad {
 		
 		Boolean cicloLectivoAgregado = unlam.agregarCicloLectivo(segundoCuatri);
 		
-		System.out.println(cicloLectivoAgregado + "   " + segundoCuatri.getFechaInicioInscripcion() + "   " + segundoCuatri.getFechaFinalizacionInscripcion()+ "   " + segundoCuatri.getFechaInicioCicloLectivo() + "   " + segundoCuatri.getFechaFinalizacionCicloLectivo());
+		assertFalse(cicloLectivoAgregado);
+	}
+	
+	@Test
+	public void noAgregarUnCicloLectivoConFechasSuperpuestasAOtroCiclo() throws ParseException {
+		Universidad unlam = new Universidad ("UNLaM");
+		CicloLectivo primerCuatri = new CicloLectivo (1, "03-03-2023", "10-03-2023", "27-03-2023", "03-08-2023");
+		CicloLectivo segundoCuatri = new CicloLectivo (2, "31-07-2023", "03-08-2023", "14-08-2023", "02-12-2023");
+		
+		unlam.agregarCicloLectivo(primerCuatri);
+		Boolean cicloLectivoAgregado = unlam.agregarCicloLectivo(segundoCuatri);
 		
 		assertFalse(cicloLectivoAgregado);
 	}
@@ -107,6 +117,61 @@ public class testUniversidad {
 		Boolean comisionAgregada = pb2.agregarComision(comision1);
 		
 		assertTrue(comisionAgregada);
+	}
+	
+
+
+	@Test
+	public void RegistrarDocente() {
+		Universidad unlam = new Universidad ("UNLaM");
+		Carrera desarrolloWeb = new Carrera (1,"Desarrollo Web");
+		Materia pb2 = new Materia (1, "PB2");
+		Profesor profe1 = new Profesor (1, 12345678, "Micaela", "Mendez");
+		
+		unlam.agregarCarrera(desarrolloWeb);
+		desarrolloWeb.agregarMateria(pb2);
+		Boolean profesorAgregado = pb2.agregarDocentes(profe1);
+		
+		assertTrue(profesorAgregado);
+	}
+	
+	@Test
+	public void NoRegistrarDosDocentesConElMismoDniEnLaMismaCarrera() {
+		Universidad unlam = new Universidad ("UNLaM");
+		Carrera desarrolloWeb = new Carrera (1,"Desarrollo Web");
+		Materia pb2 = new Materia (1, "PB2");
+		Profesor profe1 = new Profesor (1, 12345678, "Micaela", "Mendez");
+		Profesor profe2 = new Profesor (1, 12345678, "Noelia", "Noe");
+		
+		unlam.agregarCarrera(desarrolloWeb);
+		desarrolloWeb.agregarMateria(pb2);
+		pb2.agregarDocentes(profe1);
+		Boolean profesorAgregado = pb2.agregarDocentes(profe2);
+		
+		assertFalse(profesorAgregado);
+	}
+	
+	@Test
+	public void asignarCorrelatividadAUnaMateria() {
+		Carrera desarrolloWeb = new Carrera (1,"Desarrollo Web");
+		Materia pb1 = new Materia (1, "PB1");
+		Materia pb2 = new Materia (2, "PB2");
+		
+		Boolean correlatividadAgregada=desarrolloWeb.agregarCorrelatividad(1, 2);
+		
+		assertTrue(correlatividadAgregada);
+	}
+	
+	@Test
+	public void eliminarCorrelatividadAUnaMateria() {
+		Carrera desarrolloWeb = new Carrera (1,"Desarrollo Web");
+		Materia pb1 = new Materia (1, "PB1");
+		Materia pb2 = new Materia (2, "PB2");
+		
+		desarrolloWeb.agregarCorrelatividad(1, 2);
+		Boolean correlatividadEliminada=desarrolloWeb.eliminarCorrelatividad(1, 2);
+		
+		assertTrue(correlatividadEliminada);
 	}
 	
 	@Test

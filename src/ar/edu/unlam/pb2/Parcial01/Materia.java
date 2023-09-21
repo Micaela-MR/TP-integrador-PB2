@@ -6,6 +6,7 @@ public class Materia {
 
 	private Integer id;
 	private String nombre;
+	private ArrayList <Materia> correlativas;
 	private ArrayList <Comision>comision;
 	private ArrayList <Profesor>docentes;
 	
@@ -14,6 +15,7 @@ public class Materia {
 		//super();
 		this.id = id;
 		this.nombre = nombre;
+		this.correlativas = new ArrayList<Materia>();
 		this.comision = new ArrayList <Comision>();
 		this.docentes = new ArrayList<Profesor>();
 	}
@@ -57,9 +59,17 @@ public class Materia {
 		this.docentes = docentes;
 	}
 
+	public ArrayList<Materia> getCorrelativas() {
+		return correlativas;
+	}
 
+	public void setCorrelativas(ArrayList<Materia> correlativas) {
+		this.correlativas = correlativas;
+	}
 	
-
+	
+	
+	
 
 	public Boolean agregarComision(Comision comision){ //------------------------------
 		Boolean comisionAgregada = false;
@@ -101,6 +111,16 @@ public class Materia {
 			}
 		}
 		return docenteEncontrado;
+	}
+	
+	public void correlativaAgregada(Materia correlativa) {
+		if(!correlativas.contains(correlativa)) {
+			this.correlativas.add(correlativa);
+		}
+	}
+	
+	public void correlativaEliminada(Materia correlativa) {
+		this.correlativas.remove(correlativa);
 	}
 	
 	public int registrarNota (Integer idComision, Integer idAlumno, Integer nota) {

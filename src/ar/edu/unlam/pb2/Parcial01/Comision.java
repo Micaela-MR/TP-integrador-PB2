@@ -5,11 +5,11 @@ import java.util.ArrayList;
 public class Comision {
 
 	private Integer id;
-	private String turno;
+	private String turno; //enum
 	private CicloLectivo ciclo;
+	private Aula aula;
 	private ArrayList<Alumno> alumnosComision;
 	private ArrayList<Profesor> profesores;
-	private Aula aula;
 	
 	
 	public Comision(Integer id, String turno, CicloLectivo ciclo) { //saqué materia y ciclo lectivo

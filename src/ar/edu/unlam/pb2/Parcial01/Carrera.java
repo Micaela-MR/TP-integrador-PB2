@@ -7,7 +7,6 @@ public class Carrera {
 	
 	private Integer id;
 	private String nombre;
-	private ArrayList<Materia> correlativas;
 	private ArrayList<Materia> materias;
 	private ArrayList<Alumno> alumnos;
 	
@@ -80,7 +79,7 @@ public class Carrera {
 		}
 		return materiaEncontrada;
 	}
-     
+	
     public Boolean agregarAlumno(Alumno alumno) {
     	if(!this.buscarAlumnoPorDni(alumno.getDni())) {
     		alumnos.add(alumno);
@@ -100,18 +99,26 @@ public class Carrera {
 	}
     
     public boolean agregarCorrelatividad(Integer idMateria, Integer idCorrelativa) {  //-------------------
-		for(int i = 0; i < materias.size(); i++) {
-			if(materias.get(i).getId().equals(idMateria) && materias.get(i).getId().equals(idCorrelativa)) {
-				correlativas.add(materias.get(i));
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	public void eliminarCorrelatividad(Integer idMateria, Integer idCorrelativaAELiminar) {
-		
-	}
+    	Materia correlativa=null;
+    	for(int i = 0; i < materias.size(); i++) {
+    		if(materias.get(i).getId().equals(idCorrelativa)) {
+    			correlativa=materias.get(i);
+    		}
+    	}
+    	
+    	for(int i = 0; i < materias.size(); i++) {
+    		if(materias.get(i).getId().equals(idMateria)){
+  			materias.get(i).correlativaAgregada(correlativa);
+  			return true;
+    		}
+    	}
+  		
+  		return false;
+  	}
+  	
+  	public Boolean eliminarCorrelatividad(Integer idMateria, Integer idCorrelativaAELiminar) {
+  		return false;
+  	}
     
     public String obtenerMateriasAprobadasParaUnAlumno(Integer idAlumno) {
     	return "nop";

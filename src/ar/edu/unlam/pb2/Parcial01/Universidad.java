@@ -5,13 +5,15 @@ import java.util.ArrayList;
 public class Universidad {
 	
 	private String nombre;
-	private ArrayList <CicloLectivo> ciclo;
+	private ArrayList<CicloLectivo> ciclo;
 	private ArrayList<Carrera> carreras;
+	private ArrayList<Aula> aulas;
 	
 	public Universidad(String nombre) {
 		this.nombre = nombre;
 		this.ciclo = new ArrayList<CicloLectivo>();
 		this.carreras = new ArrayList<Carrera>();
+		this.aulas = new ArrayList<Aula>();
 	}
 	
 
@@ -52,7 +54,7 @@ public class Universidad {
 	}
 	
 	public Boolean agregarCicloLectivo(CicloLectivo cicloLectivo) {  //------------------------
-		if(!this.buscarCicloLectivoPorId(cicloLectivo)|| !this.seSuperponenLasFechas(cicloLectivo)) {
+		if(!this.buscarCicloLectivoPorId(cicloLectivo) && !this.seSuperponenLasFechasDeUnCiclo(cicloLectivo) && !this.seSuperponenLasFechasDeDosCiclos(cicloLectivo)) {
 			this.ciclo.add(cicloLectivo);
 			return true;
 		}	
@@ -70,7 +72,7 @@ public class Universidad {
 		
 	}
 	
-	public Boolean seSuperponenLasFechas(CicloLectivo cicloLectivo) { //-----------------
+	public Boolean seSuperponenLasFechasDeUnCiclo(CicloLectivo cicloLectivo) { //-----------------
 		if(cicloLectivo.getFechaInicioInscripcion().before(cicloLectivo.getFechaFinalizacionInscripcion()) &&
 		   cicloLectivo.getFechaFinalizacionInscripcion().before(cicloLectivo.getFechaInicioCicloLectivo()) &&
 		   cicloLectivo.getFechaInicioCicloLectivo().before(cicloLectivo.getFechaFinalizacionCicloLectivo())) {
@@ -78,5 +80,15 @@ public class Universidad {
 		} else {
 			return true;
 		}
+	}
+	
+	public Boolean seSuperponenLasFechasDeDosCiclos(CicloLectivo cicloLectivo) { //-----------------
+		Boolean seSuperponen=false; 
+		for(int i=0;i<ciclo.size();i++) {
+			if(ciclo.get(i).getFechaFinalizacionCicloLectivo().after(cicloLectivo.getFechaInicioInscripcion())) {
+			seSuperponen = true;
+		} 
+		}
+		return seSuperponen;
 	}
 }

@@ -11,7 +11,7 @@ public class CicloLectivo {
 	private Date fechaInicioInscripcion;
 	private Date fechaFinalizacionInscripcion;
 	
-	SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-yyyy");
+	SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-M-yyyy");
 	
 	public CicloLectivo(Integer id, String fechaInicioInscripcion, String fechaFinalizacionInscripcion,String fechaInicioCicloLectivo, String fechaFinalizacionCicloLectivo) throws ParseException {
 		this.id = id;
