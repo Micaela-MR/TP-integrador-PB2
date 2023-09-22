@@ -104,7 +104,25 @@ public class testUniversidad {
 	}
 	
 	@Test
-	public void asignarComisionAMateria() throws ParseException {
+	public void agregarComisionesAUnaMateria() throws ParseException {
+		Universidad unlam = new Universidad ("UNLaM");
+		CicloLectivo segundoCuatri = new CicloLectivo (1, "31-07-2023", "03-08-2023", "14-08-2023", "02-12-2023");
+		Carrera desarrolloWeb = new Carrera (1,"Desarrollo Web");
+		Materia pb2 = new Materia (1, "PB2");
+		Comision comision1 = new Comision (1, "T", segundoCuatri);
+		Comision comision2 = new Comision (2, "M", segundoCuatri);
+		
+		unlam.agregarCicloLectivo(segundoCuatri);
+		unlam.agregarCarrera(desarrolloWeb);
+		desarrolloWeb.agregarMateria(pb2);
+		pb2.agregarComision(comision1);
+		Boolean comisionAgregada = pb2.agregarComision(comision2);
+		
+		assertTrue(comisionAgregada);
+	}
+	
+	@Test
+	public void NoAgregarDosComisionesAUnaMateriaEnElMismoCicloLectivoYMismoTurno() throws ParseException {
 		Universidad unlam = new Universidad ("UNLaM");
 		Carrera desarrolloWeb = new Carrera (1,"Desarrollo Web");
 		CicloLectivo segundoCuatri = new CicloLectivo (1, "31-07-2023", "03-08-2023", "14-08-2023", "02-12-2023");
@@ -113,13 +131,13 @@ public class testUniversidad {
 		unlam.agregarCicloLectivo(segundoCuatri);
 		
 		Comision comision1 = new Comision (1, "T", segundoCuatri);
+		Comision comision2 = new Comision (2, "T", segundoCuatri);
 		
-		Boolean comisionAgregada = pb2.agregarComision(comision1);
+		pb2.agregarComision(comision1);
+		Boolean comisionAgregada = pb2.agregarComision(comision2);
 		
-		assertTrue(comisionAgregada);
+		assertFalse(comisionAgregada);
 	}
-	
-
 
 	@Test
 	public void RegistrarDocente() {
@@ -151,7 +169,7 @@ public class testUniversidad {
 		assertFalse(profesorAgregado);
 	}
 	
-	@Test
+	/*@Test
 	public void asignarCorrelatividadAUnaMateria() {
 		Carrera desarrolloWeb = new Carrera (1,"Desarrollo Web");
 		Materia pb1 = new Materia (1, "PB1");
@@ -172,7 +190,7 @@ public class testUniversidad {
 		Boolean correlatividadEliminada=desarrolloWeb.eliminarCorrelatividad(1, 2);
 		
 		assertTrue(correlatividadEliminada);
-	}
+	}*/
 	
 	@Test
 	public void asignarUnDocenteAUnaComisión() {

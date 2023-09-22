@@ -12,7 +12,7 @@ public class Comision {
 	private ArrayList<Profesor> profesores;
 	
 	
-	public Comision(Integer id, String turno, CicloLectivo ciclo) { //saqué materia y ciclo lectivo
+	public Comision(Integer id, String turno, CicloLectivo ciclo) {
 		//super();
 		this.id = id;
 		this.turno = turno;

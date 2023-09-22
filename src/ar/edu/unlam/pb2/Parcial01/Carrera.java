@@ -98,7 +98,7 @@ public class Carrera {
 		return alumnoEncontrado;
 	}
     
-    public boolean agregarCorrelatividad(Integer idMateria, Integer idCorrelativa) {  //-------------------
+   /* public boolean agregarCorrelatividad(Integer idMateria, Integer idCorrelativa) {  //-------------------
     	Materia correlativa=null;
     	for(int i = 0; i < materias.size(); i++) {
     		if(materias.get(i).getId().equals(idCorrelativa)) {
@@ -114,7 +114,7 @@ public class Carrera {
     	}
   		
   		return false;
-  	}
+  	}*/
   	
   	public Boolean eliminarCorrelatividad(Integer idMateria, Integer idCorrelativaAELiminar) {
   		return false;
