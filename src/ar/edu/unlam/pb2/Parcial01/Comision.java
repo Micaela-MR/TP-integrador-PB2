@@ -9,18 +9,42 @@ public class Comision {
 	private String turno;
 	private ArrayList<Alumno> alumnosComision;
 	private ArrayList<Profesor> profesores;
+<<<<<<< Updated upstream
 	private Materia materia;
 	private Aula aula;
 	
 	
 	public Comision(Integer id, CicloLectivo ciclo, String turno, Materia materia) {
 		//super();
+=======
+	private Carrera carrera;
+	private Aula aula;
+	
+	
+	public Comision(Integer id, String turno, Carrera carrera) {
+		super();
+>>>>>>> Stashed changes
 		this.id = id;
 		this.ciclo = ciclo;
 		this.turno = turno;
 		this.alumnosComision = new ArrayList<Alumno>();
 		this.profesores = new ArrayList<Profesor>();
+<<<<<<< Updated upstream
 		this.materia = materia;
+=======
+		this.aula = asignarAulaAlaComision(0,0);
+		this.carrera = carrera;
+		
+	}
+
+	
+	public void inscribirAlumnoAComision (Integer dni, Integer idComision){
+		Carrera carreraPerteneciente = getCarrera();
+		if (carreraPerteneciente.buscarAlumnoPorDni(dni)) {
+			if()
+		}
+		
+>>>>>>> Stashed changes
 	}
 	
 	public Integer getId() {
@@ -82,6 +106,7 @@ public class Comision {
 	}
 
 
+<<<<<<< Updated upstream
 	
 	
 
@@ -100,6 +125,17 @@ public class Comision {
 	public Integer asignarAulaAlaComision(Integer idComision, Integer dniDocente) {
 		return 0;
 	}
+=======
+	public Carrera getCarrera() {
+		return carrera;
+	}
+
+
+	public void setCarrera(Carrera carrera) {
+		this.carrera = carrera;
+	}
+	
+>>>>>>> Stashed changes
 	
 	
 }

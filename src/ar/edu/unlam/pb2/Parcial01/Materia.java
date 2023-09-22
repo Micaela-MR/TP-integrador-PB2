@@ -18,6 +18,46 @@ public class Materia {
 		this.docentes = new ArrayList<Profesor>();
 	}
 
+<<<<<<< Updated upstream
+=======
+
+	public void agregarComision(){
+		
+		}
+	
+	public Boolean agregarDocentes(Profesor docenteAgregar) {
+        Boolean seAgrego = false;	
+	
+	    	if(!this.buscarDocentePorDni(docenteAgregar)){	
+	    			docentes.add(docenteAgregar);
+	    			seAgrego = true;
+	    		}	    	
+		   
+			return seAgrego;
+		
+	}
+	public Boolean buscarDocentePorDni(Profesor docente) {
+		Boolean profeEncontradoPorDni = false;
+		for (int i = 0; i < docentes.size(); i++) {
+			if(this.docentes.get(i).getDni()== docente.getDni()) {
+				profeEncontradoPorDni = true;
+			}
+		}
+		return profeEncontradoPorDni;
+	}
+	
+	
+	
+	public void eliminarCorrelatividad(Integer idMateria, Integer idCorrelativaAELiminar) {
+		
+	}
+	
+	public int registrarNota (Integer idComision, Integer idAlumno, Integer nota) {
+		return 0;
+	}
+
+
+>>>>>>> Stashed changes
 	public Integer getId() {
 		return id;
 	}
