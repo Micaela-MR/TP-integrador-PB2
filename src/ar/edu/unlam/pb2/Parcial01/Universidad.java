@@ -19,7 +19,10 @@ public class Universidad {
 		this.carreras = new ArrayList<Carrera>();
 	}
 	
-	public Boolean agregarCicloLectivo(CicloLectivo ciclo1) {
+
+
+/**	public Boolean agregarCicloLectivo(CicloLectivo ciclo1) {
+
 		Boolean seAgrego = false;
 		
 		for (int i = 0; i < ciclo.size(); i++) {
@@ -70,7 +73,7 @@ public class Universidad {
 		Date fecha = calendar.getTime();
 		
 		return fecha;
-	}
+	}**/
 	
 	public String getNombre() {
 		return nombre;
@@ -88,19 +91,8 @@ public class Universidad {
 		this.carreras = carreras;
 	}
 
-	public void agregarCarrera(Carrera ingenieria) {
-		this.carreras.add(ingenieria);
-		
-	}
-
-	public ArrayList<CicloLectivo> getCiclo() {
-		return ciclo;
-	}
-
-	public void setCiclo(ArrayList<CicloLectivo> ciclo) {
-		this.ciclo = ciclo;
-	}
 	
 
     
+
 }

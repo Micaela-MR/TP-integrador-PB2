@@ -12,6 +12,7 @@ public class Carrera {
 	private ArrayList<Alumno> alumnos;
 	
 	
+	
 	public Carrera(Integer id, String nombre) {
 		super();
 		this.id = id;
@@ -21,6 +22,7 @@ public class Carrera {
 		this.correlativas = new ArrayList<Materia>();
 	}
 	
+
      public Boolean agregarMateria(Materia materia) {
     	 if(!buscarMateriaPorId(materia.getId())) {
     		 materias.add(materia);
@@ -63,24 +65,43 @@ public class Carrera {
   		return seAgregoCorrelativa;
   	}
 
-	public void agregarAlumno() {
- 		
- 	}
+
+
+	/**public Boolean agregarAlumno(Alumno alumno) { // de Mica
+		Boolean seAgrego = false;
+		    	if (! this.buscarAlumnoPorDni (alumno.getDni())) {
+		    		alumnos.add(alumno);
+		    		seAgrego = true;
+		    	}
+		    	return seAgrego;
+ 	}**/
+	
+	public Boolean buscarAlumnoPorDni(Integer dniAlumno) { // de Mica
+		Boolean alumnoEncontradoPorDni = false;
+		for (int i = 0; i < alumnos.size(); i++) {
+			if(this.alumnos.get(i).getDni()== dniAlumno) {
+				alumnoEncontradoPorDni = true;
+			}
+		}
+		return alumnoEncontradoPorDni;
+	}
+
      
+    public Alumno buscarAlumnoPordniQueDevuelveElAlumno(Integer dniAlumno) {
+		Alumno alumnoEncontradoPorDni = null;
+		for (int i = 0; i < alumnos.size(); i++) {
+			if(this.alumnos.get(i).getDni()== dniAlumno) {
+				alumnoEncontradoPorDni = this.alumnos.get(i);
+			}
+		}
+		return alumnoEncontradoPorDni;
+		
+	}
      public String obtenerMateriasAprobadasParaUnAlumno(Integer idAlumno) {
     	 return "nop";
      }
-	
-	public int obtenerNota(Integer idAlumno, Integer idMateria) {
-		return 0;
-		
-	}
-	public String obtenerMateriasQueFaltanCursarParaUnAlumno(Integer idAlumno) {
-		return "nop";
-	}
-	public int calcularPromedio(Integer idAlumno) {
-		return 0;
-	}
+
+
 
 	public Integer getId() {
 		return id;
@@ -114,6 +135,21 @@ public class Carrera {
 		this.alumnos = alumnos;
 	}
 	
-}
 
+
+
+    
+	
+	public Integer obtenerNota(Integer idAlumno, Integer idMateria) {
+		return 0;
+	}
+	
+	public String obtenerMateriasQueFaltanCursarParaUnAlumno(Integer idAlumno) {
+		return "nop";
+	}
+	
+	public Double calcularPromedio(Integer idAlumno) {
+		return 0.0;
+	}
+}
 
