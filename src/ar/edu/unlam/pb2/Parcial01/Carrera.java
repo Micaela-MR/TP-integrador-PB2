@@ -130,13 +130,45 @@ public class Carrera {
 
 
 	public Boolean agregarMateria(Materia materia) {
-		return null;
+		if(!this.buscarMateriaPorId(materia.getId())) {
+    		materias.add(materia);
+    		return true;
+    	}
+    		return false;
 	}
-     
+	
+	public Boolean buscarMateriaPorId(Integer idMateria) {
+		Boolean materiaEncontrada=false;
+		for(int i = 0; i < materias.size(); i++) {
+			if(this.materias.get(i).getId().equals(idMateria)) {
+				materiaEncontrada = true;
+			}
+		}
+		return materiaEncontrada;
+	}
+	
     public Boolean agregarAlumno(Alumno alumno) {
-		return null;
+    	if(!this.buscarAlumnoPorDni(alumno.getDni())) {
+    		alumnos.add(alumno);
+    		return true;
+    	}
+    		return false;
  	}
-     
+    
+    public Boolean buscarAlumnoPorDni(Integer dniAlumno) {
+		Boolean alumnoEncontrado = false;
+		for(int i = 0; i < alumnos.size(); i++) {
+			if(this.alumnos.get(i).getDni().equals(dniAlumno)) {
+				alumnoEncontrado = true;
+			}
+		}
+		return alumnoEncontrado;
+	}
+  	
+  	public Boolean eliminarCorrelatividad(Integer idMateria, Integer idCorrelativaAELiminar) {
+  		return false;
+  	}
+    
     public String obtenerMateriasAprobadasParaUnAlumno(Integer idAlumno) {
     	return "nop";
     }

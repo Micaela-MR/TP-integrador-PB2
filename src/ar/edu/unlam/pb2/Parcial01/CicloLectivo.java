@@ -1,5 +1,6 @@
 package ar.edu.unlam.pb2.Parcial01;
-
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class CicloLectivo {
@@ -10,12 +11,14 @@ public class CicloLectivo {
 	private Date fechaInicioInscripcion;
 	private Date fechaFinalizacionInscripcion;
 	
-	public CicloLectivo(Integer id, Date fechaInicioCicloLectivo, Date fechaFinalizacionCicloLectivo,Date fechaInicioInscripcion, Date fechaFinalizacionInscripcion) {
+	SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-M-yyyy");
+	
+	public CicloLectivo(Integer id, String fechaInicioInscripcion, String fechaFinalizacionInscripcion,String fechaInicioCicloLectivo, String fechaFinalizacionCicloLectivo) throws ParseException {
 		this.id = id;
-		this.fechaInicioCicloLectivo = fechaInicioCicloLectivo;
-		this.fechaFinalizacionCicloLectivo = fechaFinalizacionCicloLectivo;
-		this.fechaInicioInscripcion = fechaInicioInscripcion;
-		this.fechaFinalizacionInscripcion = fechaFinalizacionInscripcion;
+		this.fechaInicioInscripcion = formatoFecha.parse(fechaInicioInscripcion);
+		this.fechaFinalizacionInscripcion = formatoFecha.parse(fechaFinalizacionInscripcion);
+		this.fechaInicioCicloLectivo =  formatoFecha.parse(fechaInicioCicloLectivo);
+		this.fechaFinalizacionCicloLectivo = formatoFecha.parse(fechaFinalizacionCicloLectivo);
 	}
 
 	public Integer getId() {
@@ -57,5 +60,6 @@ public class CicloLectivo {
 	public void setFechaFinalizacionInscripcion(Date fechaFinalizacionInscripcion) {
 		this.fechaFinalizacionInscripcion = fechaFinalizacionInscripcion;
 	}
+	
 	
 }
