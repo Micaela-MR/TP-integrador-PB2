@@ -11,6 +11,8 @@ public class Comision {
 	private ArrayList<Alumno> alumnosComision;
 	private ArrayList<Profesor> profesores;
 	
+	private Integer contadorDeAlumnos;
+	private Integer profesoresNecesarios;
 	
 	public Comision(Integer id, String turno, CicloLectivo ciclo) {
 		//super();
@@ -69,12 +71,35 @@ public class Comision {
 	
 
 	
-	public void inscribirAlumnoAComision (Integer dniAlumno, Integer idComision){
+	public Boolean inscribirAlumnoAComision (Integer dniAlumno, Integer idComision){
 		
+		return false;
 	}
 	
-	public void asignarProfesorAlaComision(Integer idComision, Integer dniDocente) {
+	public Boolean asignarAlumnoAComision (Alumno alumno) {
 		
+		contadorDeAlumnos++;
+		return true;
+	}
+	
+	public Boolean asignarDocentesAComision(Profesor docenteAAgregar) {
+		Boolean agregarProfesor=false;
+		
+		if(profesores.isEmpty()) {
+			profesores.add(docenteAAgregar);
+			return agregarProfesor = true;
+		} else if (!profesores.contains(docenteAAgregar) && this.asignarDocenteCadaVeinteAlumnos()) {
+			profesores.add(docenteAAgregar);
+			return agregarProfesor = true;
+		}
+		return agregarProfesor;
+	}
+	
+	public Boolean asignarDocenteCadaVeinteAlumnos() { //arreglar
+		Boolean asignarNuevoDocente=false;
+		if(profesores.size() < (int)alumnosComision.size()/20) {
+			return asignarNuevoDocente=true;
+		}return asignarNuevoDocente;
 	}
 	
 	public Integer asignarAulaAlaComision(Integer idComision, Integer dniDocente) {

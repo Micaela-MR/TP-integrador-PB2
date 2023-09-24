@@ -123,6 +123,27 @@ public class Materia {
 		return docenteEncontrado;
 	}
 	
+	public Boolean asignarProfesorAlaComision(Integer idComision, Integer dniDocente) {
+		Boolean seAsignoElProfesor=false;
+		Profesor docenteAAgregar=null;
+		
+		for(int i = 0; i < docentes.size(); i++) {
+			if(this.docentes.get(i).getDni().equals(dniDocente)) {
+				docenteAAgregar = docentes.get(i);
+			}
+		}
+		
+		if(docenteAAgregar!=null) {
+			for(int i = 0; i < comision.size(); i++) {
+				if(this.comision.get(i).getId().equals(idComision)) {
+					comision.get(i).asignarDocentesAComision(docenteAAgregar);
+					seAsignoElProfesor = true;
+				}
+			}
+		}return seAsignoElProfesor;
+	}
+	
+	
 	/*public void correlativaAgregada(Materia correlativa) {
 		if(!correlativas.contains(correlativa)) {
 			this.correlativas.add(correlativa);
