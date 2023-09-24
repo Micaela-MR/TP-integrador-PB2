@@ -138,6 +138,8 @@ public class Materia {
 				if(this.comision.get(i).getId().equals(idComision)) {
 					comision.get(i).asignarDocentesAComision(docenteAAgregar);
 					seAsignoElProfesor = true;
+				} else {
+					seAsignoElProfesor = false;
 				}
 			}
 		}return seAsignoElProfesor;
