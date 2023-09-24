@@ -169,29 +169,6 @@ public class testUniversidad {
 		assertFalse(profesorAgregado);
 	}
 	
-	/*@Test
-	public void asignarCorrelatividadAUnaMateria() {
-		Carrera desarrolloWeb = new Carrera (1,"Desarrollo Web");
-		Materia pb1 = new Materia (1, "PB1");
-		Materia pb2 = new Materia (2, "PB2");
-		
-		Boolean correlatividadAgregada=desarrolloWeb.agregarCorrelatividad(1, 2);
-		
-		assertTrue(correlatividadAgregada);
-	}
-	
-	@Test
-	public void eliminarCorrelatividadAUnaMateria() {
-		Carrera desarrolloWeb = new Carrera (1,"Desarrollo Web");
-		Materia pb1 = new Materia (1, "PB1");
-		Materia pb2 = new Materia (2, "PB2");
-		
-		desarrolloWeb.agregarCorrelatividad(1, 2);
-		Boolean correlatividadEliminada=desarrolloWeb.eliminarCorrelatividad(1, 2);
-		
-		assertTrue(correlatividadEliminada);
-	}*/
-	
 	@Test
 	public void asignarUnDocenteAUnaComisión() throws ParseException {
 		Universidad unlam = new Universidad ("UNLaM");

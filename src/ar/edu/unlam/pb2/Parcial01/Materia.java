@@ -6,7 +6,6 @@ public class Materia {
 
 	private Integer id;
 	private String nombre;
-	//private ArrayList <Materia> correlativas;
 	private ArrayList <Comision>comision;
 	private ArrayList <Profesor>docentes;
 	
@@ -15,7 +14,6 @@ public class Materia {
 		//super();
 		this.id = id;
 		this.nombre = nombre;
-		//this.correlativas = new ArrayList<Materia>();
 		this.comision = new ArrayList <Comision>();
 		this.docentes = new ArrayList<Profesor>();
 	}
@@ -59,16 +57,7 @@ public class Materia {
 		this.docentes = docentes;
 	}
 
-	/*public ArrayList<Materia> getCorrelativas() {
-		return correlativas;
-	}
 
-	public void setCorrelativas(ArrayList<Materia> correlativas) {
-		this.correlativas = correlativas;
-	}*/
-	
-	
-	
 	
 
 	public Boolean agregarComision(Comision comision){
