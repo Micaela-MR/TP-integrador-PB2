@@ -129,7 +129,7 @@ public class testUniversidad {
 		Materia pb2 = new Materia (1, "PB2");
 		
 		unlam.agregarCicloLectivo(segundoCuatri);
-		
+		unlam.agregarCarrera(desarrolloWeb);
 		Comision comision1 = new Comision (1, "T", segundoCuatri);
 		Comision comision2 = new Comision (2, "T", segundoCuatri);
 		
@@ -144,27 +144,27 @@ public class testUniversidad {
 		Universidad unlam = new Universidad ("UNLaM");
 		Carrera desarrolloWeb = new Carrera (1,"Desarrollo Web");
 		Materia pb2 = new Materia (1, "PB2");
-		Profesor profe1 = new Profesor (1, 12345678, "Micaela", "Mendez");
+		Profesor juanMa = new Profesor(02, 35555555, "JuanManuel", "Monteagudo" );
 		
 		unlam.agregarCarrera(desarrolloWeb);
 		desarrolloWeb.agregarMateria(pb2);
-		Boolean profesorAgregado = pb2.agregarDocentes(profe1);
+		Boolean profesorAgregado = pb2.agregarDocentes(juanMa);
 		
 		assertTrue(profesorAgregado);
 	}
 	
 	@Test
-	public void NoRegistrarDosDocentesConElMismoDniEnLaMismaCarrera() {
+	public void NoRegistrarDosDocentesConElMismoDniEnLaMismaMateria() {
 		Universidad unlam = new Universidad ("UNLaM");
 		Carrera desarrolloWeb = new Carrera (1,"Desarrollo Web");
 		Materia pb2 = new Materia (1, "PB2");
-		Profesor profe1 = new Profesor (1, 12345678, "Micaela", "Mendez");
-		Profesor profe2 = new Profesor (1, 12345678, "Noelia", "Noe");
+		Profesor juanMa = new Profesor(02, 35555555, "JuanManuel", "Monteagudo" );
+		Profesor andi = new Profesor (01, 35555555, "AndresGerardo", "Borgeat");
 		
 		unlam.agregarCarrera(desarrolloWeb);
 		desarrolloWeb.agregarMateria(pb2);
-		pb2.agregarDocentes(profe1);
-		Boolean profesorAgregado = pb2.agregarDocentes(profe2);
+		pb2.agregarDocentes(juanMa);
+		Boolean profesorAgregado = pb2.agregarDocentes(andi);
 		
 		assertFalse(profesorAgregado);
 	}
@@ -175,16 +175,16 @@ public class testUniversidad {
 		CicloLectivo segundoCuatri = new CicloLectivo (1, "31-07-2023", "03-08-2023", "14-08-2023", "02-12-2023");
 		Carrera desarrolloWeb = new Carrera (1,"Desarrollo Web");
 		Materia pb2 = new Materia (1, "PB2");
-		Profesor profe1 = new Profesor (1, 12345678, "Micaela", "Mendez");
+		Profesor luciano = new Profesor (03, 37777777, "LucianoEzequiel", "Salgado");
 		Comision comision1 = new Comision (1, "T", segundoCuatri);
 		
 		unlam.agregarCicloLectivo(segundoCuatri);
 		unlam.agregarCarrera(desarrolloWeb);
 		desarrolloWeb.agregarMateria(pb2);
 		pb2.agregarComision(comision1);
-		pb2.agregarDocentes(profe1);
+		pb2.agregarDocentes(luciano);
 		
-		Boolean DocenteAsignado = pb2.asignarProfesorAlaComision(1, 12345678);
+		Boolean DocenteAsignado = pb2.asignarProfesorAlaComision(1, 37777777);
 		
 		assertTrue(DocenteAsignado);
 	}
@@ -195,17 +195,17 @@ public class testUniversidad {
 		CicloLectivo segundoCuatri = new CicloLectivo (1, "31-07-2023", "03-08-2023", "14-08-2023", "02-12-2023");
 		Carrera desarrolloWeb = new Carrera (1,"Desarrollo Web");
 		Materia pb2 = new Materia (1, "PB2");
-		Profesor profe1 = new Profesor (1, 12345678, "Micaela", "Mendez");
+		Profesor andi = new Profesor (01, 366666666, "AndresGerardo", "Borgeat");
 		Comision comision1 = new Comision (1, "T", segundoCuatri);
 		
 		unlam.agregarCicloLectivo(segundoCuatri);
 		unlam.agregarCarrera(desarrolloWeb);
 		desarrolloWeb.agregarMateria(pb2);
 		pb2.agregarComision(comision1);
-		pb2.agregarDocentes(profe1);
-		pb2.asignarProfesorAlaComision(1, 24435612);
+		pb2.agregarDocentes(andi);
+		pb2.asignarProfesorAlaComision(1, 366666666);
 		
-		Boolean DocenteAsignado = pb2.asignarProfesorAlaComision(1, 24435612);
+		Boolean DocenteAsignado = pb2.asignarProfesorAlaComision(1, 366666666);
 		
 		assertFalse(DocenteAsignado);
 	}
@@ -216,8 +216,8 @@ public class testUniversidad {
 		CicloLectivo segundoCuatri = new CicloLectivo (1, "31-07-2023", "03-08-2023", "14-08-2023", "02-12-2023");
 		Carrera desarrolloWeb = new Carrera (1,"Desarrollo Web");
 		Materia pb2 = new Materia (1, "PB2");
-		Profesor profe1 = new Profesor (1, 24435612, "Micaela", "Mendez");
-		Profesor profe2 = new Profesor (2, 24435452, "Micaela", "Mendez");
+		Profesor juanMa = new Profesor(02, 35555555, "JuanManuel", "Monteagudo" );
+		Profesor luciano = new Profesor (03, 37777777, "LucianoEzequiel", "Salgado");
 		Comision comision1 = new Comision (1, "T", segundoCuatri);
 		Alumno alumno = new Alumno (1, 43817073, "Micaela", "Mendez", "03-06-2002");
 		Alumno alumno2 = new Alumno (2, 11111112, "Noelia", "Noe", "");
@@ -265,14 +265,33 @@ public class testUniversidad {
 		desarrolloWeb.agregarAlumno(alumno19);
 		desarrolloWeb.agregarAlumno(alumno20);
 		desarrolloWeb.agregarAlumno(alumno21);
-		pb2.agregarComision(comision1);
-		pb2.agregarDocentes(profe1);
-		pb2.agregarDocentes(profe2);
-		pb2.asignarProfesorAlaComision(1, 12345678);
 		
-		Boolean DocenteAsignado = pb2.asignarProfesorAlaComision(1, 24435452);
+		pb2.agregarComision(comision1);
+		
+		comision1.asignarAlumnoAComision(alumno);
+		
+		pb2.agregarDocentes(juanMa);
+		pb2.agregarDocentes(luciano);
+		pb2.asignarProfesorAlaComision(1, 35555555);
+		
+		Boolean DocenteAsignado = pb2.asignarProfesorAlaComision(1, 37777777);
 		
 		assertTrue(DocenteAsignado);
+	}
+	
+	@Test 
+	public void queSePuedaAgregarUnaMateriaCorrelativa(){
+		Universidad unlam = new Universidad("Unlam");
+		Carrera ingenieria = new Carrera(01, "ingenieria");
+		Materia programacion1 = new Materia(01, "programacion 1");
+		Materia programacion2 = new Materia(02, "programacion 1");
+		
+		unlam.agregarCarrera(ingenieria);
+		ingenieria.agregarMateria(programacion1);
+		ingenieria.agregarMateria(programacion2);
+		Boolean ve = ingenieria.agregarCorrelatividad((Integer)01, (Integer)02);
+		
+		assertTrue(ve);
 	}
 	
 	@Test

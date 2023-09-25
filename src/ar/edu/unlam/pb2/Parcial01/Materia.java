@@ -6,15 +6,15 @@ public class Materia {
 
 	private Integer id;
 	private String nombre;
-	private ArrayList <Comision>comision;
+	private ArrayList <Comision>comisiones;
 	private ArrayList <Profesor>docentes;
-	
+	private EstadoDeLaMateria estadoMateria;
 	
 	public Materia(Integer id, String nombre) {
 		//super();
 		this.id = id;
 		this.nombre = nombre;
-		this.comision = new ArrayList <Comision>();
+		this.comisiones = new ArrayList<Comision>();
 		this.docentes = new ArrayList<Profesor>();
 	}
 
@@ -39,12 +39,12 @@ public class Materia {
 
 
 	public ArrayList<Comision> getComision() {
-		return comision;
+		return comisiones;
 	}
 
 
 	public void setComision(ArrayList<Comision> comision) {
-		this.comision = comision;
+		this.comisiones = comision;
 	}
 
 
@@ -57,16 +57,25 @@ public class Materia {
 		this.docentes = docentes;
 	}
 
-
 	
+	
+
+	public ArrayList<Comision> getComisiones() {
+		return comisiones;
+	}
+
+	public void setComisiones(ArrayList<Comision> comisiones) {
+		this.comisiones = comisiones;
+	}
+
 
 	public Boolean agregarComision(Comision comision){
 		Boolean comisionAgregada=false;
-		if(this.comision.isEmpty()) {
-			this.comision.add(comision);
+		if(this.comisiones.isEmpty()) {
+			this.comisiones.add(comision);
 			comisionAgregada = true;
 		}else if(!this.buscarComisionPorId(comision.getId()) && !this.buscarComisionPorTurnoYCicloLectivo(comision)) {
-			this.comision.add(comision);
+			this.comisiones.add(comision);
 			comisionAgregada=true;
 		}
 		return comisionAgregada;
@@ -74,9 +83,9 @@ public class Materia {
 	
 	public Boolean buscarComisionPorTurnoYCicloLectivo(Comision comision) {
 		Boolean comisionEncontrada=false;
-		for (int i = 0; i < this.comision.size(); i++) {
-				if(this.comision.get(i).getCiclo().getId().equals(comision.getCiclo().getId()) &&
-				   this.comision.get(i).getTurno().equals(comision.getTurno())) {
+		for (int i = 0; i < this.comisiones.size(); i++) {
+				if(this.comisiones.get(i).getCiclo().getId().equals(comision.getCiclo().getId()) &&
+				   this.comisiones.get(i).getTurno().equals(comision.getTurno())) {
 					comisionEncontrada=true;
 				}
 			}
@@ -85,8 +94,8 @@ public class Materia {
 	
 	public Boolean buscarComisionPorId(Integer idComision) {
 		Boolean comisionEncontrada = false;
-		for (int i = 0; i < comision.size(); i++) {
-			if(this.comision.get(i).getId().equals(idComision)) {
+		for (int i = 0; i < comisiones.size(); i++) {
+			if(this.comisiones.get(i).getId().equals(idComision)) {
 				comisionEncontrada = true;
 			}
 		}
@@ -94,22 +103,26 @@ public class Materia {
 	}
 	
 	
-	public Boolean agregarDocentes(Profesor docente) {
-		if(!this.buscarDocentePorDni(docente.getDni())) {
-    		docentes.add(docente);
-    		return true;
-    	}
-    		return false;
+	public Boolean agregarDocentes(Profesor docenteAgregar) {
+		 Boolean seAgrego = false;	
+			
+	    	if(docentes.isEmpty() || !this.buscarDocentePorDni(docenteAgregar)){	
+	    			docentes.add(docenteAgregar);
+	    			seAgrego = true;
+	    		}	    	
+		   
+			return seAgrego;
+		
 	}
 	
-	public Boolean buscarDocentePorDni(Integer dniDocente) {
-		Boolean docenteEncontrado = false;
-		for(int i = 0; i < docentes.size(); i++) {
-			if(this.docentes.get(i).getDni().equals(dniDocente)) {
-				docenteEncontrado = true;
+	public Boolean buscarDocentePorDni(Profesor docente) {
+		Boolean profeEncontradoPorDni = false;
+		for (int i = 0; i < docentes.size(); i++) {
+			if(this.docentes.get(i).getDni().equals(docente.getDni())) {
+				profeEncontradoPorDni = true;
 			}
 		}
-		return docenteEncontrado;
+		return profeEncontradoPorDni;
 	}
 	
 	public Boolean asignarProfesorAlaComision(Integer idComision, Integer dniDocente) {
@@ -123,29 +136,30 @@ public class Materia {
 		}
 		
 		if(docenteAAgregar!=null) {
-			for(int i = 0; i < comision.size(); i++) {
-				if(this.comision.get(i).getId().equals(idComision)) {
-					comision.get(i).asignarDocentesAComision(docenteAAgregar);
-					seAsignoElProfesor = true;
-				} else {
-					seAsignoElProfesor = false;
+			for(int i = 0; i < comisiones.size(); i++) {
+				if(this.comisiones.get(i).getId().equals(idComision)) {
+					seAsignoElProfesor = comisiones.get(i).asignarDocentesAComision(docenteAAgregar);
 				}
 			}
 		}return seAsignoElProfesor;
 	}
 	
-	
-	/*public void correlativaAgregada(Materia correlativa) {
-		if(!correlativas.contains(correlativa)) {
-			this.correlativas.add(correlativa);
+	public Boolean registrarNota (Integer idComision, Integer idAlumno, Evaluacion nota) {
+		Boolean notaIngresada=false;
+		for(int i = 0; i < comisiones.size(); i++) {
+			if(this.comisiones.get(i).getId().equals(idComision)) {
+				comisiones.get(i).buscarAlumnoPorId(idAlumno).agregarNota(nota);
+			}
 		}
+		return notaIngresada;
 	}
 	
-	public void correlativaEliminada(Materia correlativa) {
-		this.correlativas.remove(correlativa);
-	}*/
+	public void correlativasAprobadas() {
+		
+	}
 	
-	public int registrarNota (Integer idComision, Integer idAlumno, Integer nota) {
-		return 0;
+	public Alumno buscarAlumnoEnComision(Integer idAlumno) {
+		Alumno alumnoEncontrado=null;
+		return alumnoEncontrado;
 	}
 }

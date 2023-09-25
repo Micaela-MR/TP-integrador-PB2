@@ -1,5 +1,6 @@
 package ar.edu.unlam.pb2.Parcial01;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Alumno {
@@ -10,6 +11,7 @@ public class Alumno {
 	private String apellido;
 	private String fechaDeNacimiento;
 	private String fechaIngreso;
+	private ArrayList <Evaluacion> notas;
 	
 	public Alumno(Integer id, Integer dni,  String nombre, String apellido, String fechaDeNacimiento) {
 		this.id = id;
@@ -17,6 +19,7 @@ public class Alumno {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.fechaDeNacimiento = fechaDeNacimiento;
+		this.notas = new ArrayList<Evaluacion>();
 	}
 
 	public Alumno(Integer id, Integer dni, String nombre, String apellido,  String fechaDeNacimiento, String fechaIngreso) {
@@ -76,5 +79,21 @@ public class Alumno {
 		this.fechaIngreso = fechaIngreso;
 	}
 
+	public ArrayList<Evaluacion> getNotas() {
+		return notas;
+	}
+
+	public void setNotas(ArrayList<Evaluacion> notas) {
+		this.notas = notas;
+	}
+
+
+	public Boolean agregarNota(Evaluacion nota) {
+		if(nota.getNota()>1 && nota.getNota()<10) {
+			notas.add(nota);
+		}
+		return null;
+	}
+	
 	
 }

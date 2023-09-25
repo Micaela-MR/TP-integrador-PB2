@@ -5,20 +5,23 @@ import java.util.ArrayList;
 public class Comision {
 
 	private Integer id;
-	private String turno; //enum
+	private String turno;
 	private CicloLectivo ciclo;
 	private Aula aula;
 	private ArrayList<Alumno> alumnosComision;
 	private ArrayList<Profesor> profesores;
+
+	/*private Carrera carrera;
+	private Materia materia;*/
 	
-	private Integer contadorDeAlumnos;
-	private Integer profesoresNecesarios;
 	
-	public Comision(Integer id, String turno, CicloLectivo ciclo) {
+	
+	public Comision(Integer id, String turno,/* Carrera carrera, Materia materia,*/ CicloLectivo ciclo) {
 		//super();
 		this.id = id;
 		this.turno = turno;
 		this.ciclo = ciclo;
+		//this.materia = materia;
 		this.alumnosComision = new ArrayList<Alumno>();
 		this.profesores = new ArrayList<Profesor>();
 	}
@@ -78,8 +81,17 @@ public class Comision {
 	
 	public Boolean asignarAlumnoAComision (Alumno alumno) {
 		
-		contadorDeAlumnos++;
 		return true;
+	}
+	
+	public Alumno buscarAlumnoPorId (Integer idAlumno) {
+		Alumno alumnoEncontrado=null;
+		for(int i=0;i<alumnosComision.size();i++) {
+			if(alumnosComision.get(i).getId().equals(idAlumno)) {
+				alumnoEncontrado=alumnosComision.get(i);
+			}
+		}
+		return alumnoEncontrado;
 	}
 	
 	public Boolean asignarDocentesAComision(Profesor docenteAAgregar) {
@@ -97,7 +109,7 @@ public class Comision {
 	
 	public Boolean asignarDocenteCadaVeinteAlumnos() { //arreglar
 		Boolean asignarNuevoDocente=false;
-		if(profesores.size() < (int)alumnosComision.size()/20) {
+		if(profesores.size() < (int)(alumnosComision.size()/20)) {
 			return asignarNuevoDocente=true;
 		}return asignarNuevoDocente;
 	}
