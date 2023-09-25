@@ -27,6 +27,8 @@ public class Alumno {
 		this.fechaDeNacimiento = fechaDeNacimiento;
 		this.fechaIngreso = fechaIngreso;
 	}
+	
+
 
 	public Integer getId() {
 		return id;

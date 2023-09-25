@@ -20,6 +20,53 @@ public class Universidad {
 	}
 	
 
+	public Boolean agregarCarrera(Carrera carrera) {
+		if(!carreras.contains(carrera)) {
+    		carreras.add(carrera);
+    		return true;
+    	} else {
+    		return false;
+    	}
+	}
+	
+	public Boolean agregarCicloLectivo(CicloLectivo cicloLectivo) {  //------------------------
+		if(!this.buscarCicloLectivoPorId(cicloLectivo) && !this.seSuperponenLasFechasDeUnCiclo(cicloLectivo) && !this.seSuperponenLasFechasDeDosCiclos(cicloLectivo)) {
+			this.ciclo.add(cicloLectivo);
+			return true;
+		}	
+		return false;
+	}
+	
+	public Boolean buscarCicloLectivoPorId(CicloLectivo cicloLectivo) {
+		Boolean cicloLectivoEncontrado=false;
+		for(int i=0;i<ciclo.size();i++) {
+			if(this.ciclo.get(i).getId().equals(cicloLectivo.getId())) {
+			   return cicloLectivoEncontrado=true;
+			}
+		}
+		return cicloLectivoEncontrado;
+		
+	}
+	
+	public Boolean seSuperponenLasFechasDeUnCiclo(CicloLectivo cicloLectivo) { //-----------------
+		if(cicloLectivo.getFechaInicioInscripcion().before(cicloLectivo.getFechaFinalizacionInscripcion()) &&
+		   cicloLectivo.getFechaFinalizacionInscripcion().before(cicloLectivo.getFechaInicioCicloLectivo()) &&
+		   cicloLectivo.getFechaInicioCicloLectivo().before(cicloLectivo.getFechaFinalizacionCicloLectivo())) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	public Boolean seSuperponenLasFechasDeDosCiclos(CicloLectivo cicloLectivo) { //-----------------
+		Boolean seSuperponen=false; 
+		for(int i=0;i<ciclo.size();i++) {
+			if(ciclo.get(i).getFechaFinalizacionCicloLectivo().after(cicloLectivo.getFechaInicioInscripcion())) {
+			seSuperponen = true;
+		} 
+		}
+		return seSuperponen;
+	}
 
 /**	public Boolean agregarCicloLectivo(CicloLectivo ciclo1) {
 
@@ -63,7 +110,7 @@ public class Universidad {
 		}	
 	    }
 		return seSuperponen;
-	}
+	}**/
 	
 
 	public Date establecerFechas(int dia, int mes, int year) {
@@ -73,7 +120,7 @@ public class Universidad {
 		Date fecha = calendar.getTime();
 		
 		return fecha;
-	}**/
+	}
 	
 	public String getNombre() {
 		return nombre;

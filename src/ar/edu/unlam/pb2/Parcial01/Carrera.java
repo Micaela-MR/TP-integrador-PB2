@@ -32,7 +32,7 @@ public class Carrera {
     	 }
 		
 	}
-     private boolean buscarMateriaPorId(Integer idMateria) {
+    public boolean buscarMateriaPorId(Integer idMateria) {
  		Boolean materiaEncontradaPorId = false;
  		for (int i = 0; i < materias.size(); i++) {
  			if(this.materias.get(i).getId()== idMateria) {
@@ -41,7 +41,7 @@ public class Carrera {
  		}
  		return materiaEncontradaPorId;
  	}
-      private Materia buscarMateriaPorIdQueDevuelveLaMateria(Integer idMateria) {
+      public Materia buscarMateriaPorIdQueDevuelveLaMateria(Integer idMateria) {
  		Materia materiaEncontradaPorId = null;
  		for (int i = 0; i < materias.size(); i++) {
  			if(this.materias.get(i).getId()== idMateria) {
@@ -67,14 +67,14 @@ public class Carrera {
 
 
 
-	/**public Boolean agregarAlumno(Alumno alumno) { // de Mica
+      public Boolean agregarAlumno(Alumno alumno) { // de Mica
 		Boolean seAgrego = false;
 		    	if (! this.buscarAlumnoPorDni (alumno.getDni())) {
 		    		alumnos.add(alumno);
 		    		seAgrego = true;
 		    	}
 		    	return seAgrego;
- 	}**/
+ 	}
 	
 	public Boolean buscarAlumnoPorDni(Integer dniAlumno) { // de Mica
 		Boolean alumnoEncontradoPorDni = false;
@@ -97,6 +97,19 @@ public class Carrera {
 		return alumnoEncontradoPorDni;
 		
 	}
+    
+    public Alumno buscarAlumnoPorIdQueDevuelveElAlumno(Integer idAlumno) {
+ 		Alumno alumnoEncontradoPorId = null;
+ 		for (int i = 0; i < alumnos.size(); i++) {
+ 			if(this.alumnos.get(i).getId()== idAlumno) {
+ 				alumnoEncontradoPorId = this.alumnos.get(i);
+ 			}
+ 		}
+ 		return alumnoEncontradoPorId;
+ 		
+ 	}
+    
+    
      public String obtenerMateriasAprobadasParaUnAlumno(Integer idAlumno) {
     	 return "nop";
      }
@@ -140,9 +153,7 @@ public class Carrera {
 
     
 	
-	public Integer obtenerNota(Integer idAlumno, Integer idMateria) {
-		return 0;
-	}
+	
 	
 	public String obtenerMateriasQueFaltanCursarParaUnAlumno(Integer idAlumno) {
 		return "nop";

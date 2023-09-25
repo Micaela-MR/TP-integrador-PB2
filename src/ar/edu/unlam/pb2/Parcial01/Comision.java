@@ -46,11 +46,40 @@ public class Comision {
 
 	}
 	
-	public void asignarDocentesAlaComision(Integer idComision, Integer dniDocente) {
+	
+	public Boolean asignarDocentesAComision(Profesor docenteAAgregar) { //de Mica
+		Boolean agregarProfesor=false;
 		
+		if(profesores.isEmpty()) {
+			profesores.add(docenteAAgregar);
+			return agregarProfesor = true;
+		} else if (!profesores.contains(docenteAAgregar) && this.asignarDocenteCadaVeinteAlumnos()) {
+			profesores.add(docenteAAgregar);
+			return agregarProfesor = true;
+		}
+		return agregarProfesor;
 	}
 	
-
+	public Boolean asignarDocenteCadaVeinteAlumnos() { //arreglar
+		Boolean asignarNuevoDocente=false;
+		if(profesores.size() < (int)alumnosComision.size()/20) {
+			return asignarNuevoDocente=true;
+		}return asignarNuevoDocente;
+	}
+	
+	
+	public Aula asignarAulaAlaComision(Integer idComision, Integer dniDocente) {
+		 Aula nueva = null;
+		if(this.materia.buscarComisionPorId(idComision)) {
+			if(this.materia.buscarDocentePorDniConNumero(dniDocente)) {
+			   nueva = new Aula(01, 20);
+				
+			}
+			
+		}
+		return nueva;
+		
+	}
 
 	
 
@@ -104,24 +133,6 @@ public class Comision {
 	}
 
 
-
-
-	
-	
-
-	public void agregarCicloLectivo() {
-		
-	}
-	
-	
-	
-	public void asignarProfesorAlaComision(Integer idComision, Integer dniDocente) {
-		
-	}
-	
-	public Aula asignarAulaAlaComision(Integer idComision, Integer dniDocente) {
-		return null;
-	}
 	public Carrera getCarrera() {
 		return carrera;
 	}
