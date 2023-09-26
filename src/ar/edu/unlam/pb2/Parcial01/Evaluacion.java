@@ -28,6 +28,16 @@ public class Evaluacion {
 		this.nota = nota;
 	}
 	
+	
+	
+	public EstadoExamen getEstado() {
+		return estado;
+	}
+
+	public void setEstado(EstadoExamen estado) {
+		this.estado = estado;
+	}
+
 	public EstadoExamen estadoDelExamen(Integer nota) {
 		EstadoExamen estadoDelExamen = null;
 		if(nota < 4) {
@@ -39,5 +49,4 @@ public class Evaluacion {
 		}
 		return estadoDelExamen;
 	}
-
 }

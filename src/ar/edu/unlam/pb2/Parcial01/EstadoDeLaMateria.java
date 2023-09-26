@@ -2,5 +2,5 @@ package ar.edu.unlam.pb2.Parcial01;
 
 public enum EstadoDeLaMateria {
 
-	promocionada, aFinal, recursar;
+	promocionada, aprobado, recursar;
 }

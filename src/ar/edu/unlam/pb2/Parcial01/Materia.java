@@ -8,6 +8,7 @@ public class Materia {
 	private String nombre;
 	private ArrayList <Comision>comisiones;
 	private ArrayList <Profesor>docentes;
+	private ArrayList <Materia> correlativas;
 	private EstadoDeLaMateria estadoMateria;
 	
 	public Materia(Integer id, String nombre) {
@@ -16,6 +17,7 @@ public class Materia {
 		this.nombre = nombre;
 		this.comisiones = new ArrayList<Comision>();
 		this.docentes = new ArrayList<Profesor>();
+		this.correlativas  = new ArrayList<Materia>();
 	}
 
 	public Integer getId() {
@@ -67,7 +69,22 @@ public class Materia {
 	public void setComisiones(ArrayList<Comision> comisiones) {
 		this.comisiones = comisiones;
 	}
+	
+	public ArrayList<Materia> getCorrelativas() {
+		return correlativas;
+	}
 
+	public void setCorrelativas(ArrayList<Materia> correlativas) {
+		this.correlativas = correlativas;
+	}
+
+	public EstadoDeLaMateria getEstadoMateria() {
+		return estadoMateria;
+	}
+
+	public void setEstadoMateria(EstadoDeLaMateria estadoMateria) {
+		this.estadoMateria = estadoMateria;
+	}
 
 	public Boolean agregarComision(Comision comision){
 		Boolean comisionAgregada=false;
@@ -146,20 +163,30 @@ public class Materia {
 	
 	public Boolean registrarNota (Integer idComision, Integer idAlumno, Evaluacion nota) {
 		Boolean notaIngresada=false;
-		for(int i = 0; i < comisiones.size(); i++) {
-			if(this.comisiones.get(i).getId().equals(idComision)) {
-				comisiones.get(i).buscarAlumnoPorId(idAlumno).agregarNota(nota);
+		if(!this.correlativasPromocionadas() && nota.getNota() >= 7) {
+			notaIngresada=false;
+		} else {
+			for(int i = 0; i < comisiones.size(); i++) {
+				if(this.comisiones.get(i).getId().equals(idComision) && 
+				   !this.comisiones.get(i).buscarAlumnoPorId(idAlumno).noRendirDosRecuperatorios()) {
+					comisiones.get(i).buscarAlumnoPorId(idAlumno).agregarNota(nota);
+				}
 			}
 		}
 		return notaIngresada;
 	}
 	
-	public void correlativasAprobadas() {
-		
+	public void AgregarCorrelativas(Materia correlativa) {
+		correlativas.add(correlativa);
 	}
 	
-	public Alumno buscarAlumnoEnComision(Integer idAlumno) {
-		Alumno alumnoEncontrado=null;
-		return alumnoEncontrado;
+	public Boolean correlativasPromocionadas() {
+		for(int i=0;i<correlativas.size();i++) {
+			if(!correlativas.get(i).getEstadoMateria().equals(EstadoDeLaMateria.promocionada)) {
+				return false;
+			}
+		}return true;
 	}
+	
+	
 }

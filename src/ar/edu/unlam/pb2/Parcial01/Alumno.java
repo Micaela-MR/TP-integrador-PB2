@@ -89,11 +89,44 @@ public class Alumno {
 
 
 	public Boolean agregarNota(Evaluacion nota) {
-		if(nota.getNota()>1 && nota.getNota()<10) {
+		if(nota.getNota()>1 && nota.getNota()<10 && !this.noRendirDosRecuperatorios()) {
 			notas.add(nota);
 		}
 		return null;
 	}
 	
+	public Boolean noRendirDosRecuperatorios() {
+		Boolean noRendir=false;
+		for(int i=0;i<notas.size();i++) {
+			if(notas.get(i).getTipoDeNota().equals(TipoDeNota.Rec1Parcial) ||
+			   notas.get(i).getTipoDeNota().equals(TipoDeNota.Rec2Parcial)) {
+			return noRendir= true;
+		} else {
+			return noRendir= false;
+		}
+		}
+		return noRendir;
+	}
+	
+	public Boolean cargarNotaFinal(Evaluacion nota) { //---------------------
+		Boolean cargar=false;
+		for(int i=0;i<notas.size();i++) {
+			if(notas.get(i).getEstado().equals(EstadoExamen.aprobado)||
+			   notas.get(i).getTipoDeNota().equals(TipoDeNota.Rec2Parcial)) {
+			return cargar= true;
+		} else {
+			return cargar= false;
+		}
+		}
+		return cargar;
+	}
+	
+	public Integer getPromedio() { //--------------.
+		Integer promedio = 0;
+		for(int i=0;i<notas.size();i++) {
+			promedio+=notas.get(i).getNota();
+		}
+		return (Integer)promedio/notas.size();
+	}
 	
 }

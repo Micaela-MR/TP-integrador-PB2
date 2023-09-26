@@ -9,14 +9,12 @@ public class Carrera {
 	private String nombre;
 	private ArrayList<Materia> materias;
 	private ArrayList<Alumno> alumnos;
-	private ArrayList <Materia> correlativas;
 	
 	public Carrera(Integer id, String nombre) {
 		this.id = id;
 		this.nombre = nombre;
 		this.materias = new ArrayList<Materia>();
 		this.alumnos = new ArrayList<Alumno>();
-		this.correlativas  = new ArrayList<Materia>();
 	}
 	
 	
@@ -59,13 +57,6 @@ public class Carrera {
 		this.alumnos = alumnos;
 	}
 	
-	public ArrayList<Materia> getCorrelativas() {
-		return correlativas;
-	}
-
-	public void setCorrelativas(ArrayList<Materia> correlativas) {
-		this.correlativas = correlativas;
-	}
 	
 	
 
@@ -110,7 +101,7 @@ public class Carrera {
     private Materia buscarMateriaPorIdQueDevuelveLaMateria(Integer idMateria) {
  		Materia materiaEncontradaPorId = null;
  		for (int i = 0; i < materias.size(); i++) {
- 			if(this.materias.get(i).getId()== idMateria) {
+ 			if(this.materias.get(i).getId() == idMateria) {
  				materiaEncontradaPorId = this.materias.get(i);
  			}
  		}
@@ -122,12 +113,12 @@ public class Carrera {
   		
           for (int i = 0; i < materias.size(); i++) {
         	  for (int j = 0; j < materias.size(); j++) {
-  			if(materias.get(i).getId() == idMateria && materias.get(j).getId() == idCorrelativa ) {
-  				Materia correlativaNueva = buscarMateriaPorIdQueDevuelveLaMateria(idCorrelativa);
-  				correlativas.add(correlativaNueva);
-  				 seAgregoCorrelativa = true;
-  			}
-  		}
+        		  if(materias.get(i).getId() == idMateria && materias.get(j).getId() == idCorrelativa ) {
+        			  Materia correlativaNueva = buscarMateriaPorIdQueDevuelveLaMateria(idCorrelativa);
+        			  materias.get(i).AgregarCorrelativas(correlativaNueva);
+        			  seAgregoCorrelativa = true;
+        		  }
+        	  }
           }
   		return seAgregoCorrelativa;
   	}
