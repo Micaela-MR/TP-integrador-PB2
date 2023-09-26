@@ -27,7 +27,7 @@ public class Comision {
 		this.turno = turno;
 		this.alumnosComision = new ArrayList<Alumno>();
 		this.profesores = new ArrayList<Profesor>();
-
+        this.carrera = carrera;
 		this.materia = materia;
 		this.aula = asignarAulaAlaComision(0,0);
 		
@@ -36,7 +36,7 @@ public class Comision {
 	
 	public Boolean inscribirAlumnoAComision (Integer dni, Integer idComision){
 		Boolean seAgrego = false;
-		Alumno nuevoAlumno = carrera.buscarAlumnoPordniQueDevuelveElAlumno(dni);
+		Alumno nuevoAlumno = this.carrera.buscarAlumnoPordniQueDevuelveElAlumno(dni);
 		Comision comision = this.materia.buscarComisionPorIdQueDevuelvaComision(idComision);
 		SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
         Calendar calendar = Calendar.getInstance();

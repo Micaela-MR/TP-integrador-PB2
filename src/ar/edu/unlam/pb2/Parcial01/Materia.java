@@ -151,7 +151,8 @@ public class Materia {
 	
 	public Double obtenerNota(Integer idAlumno, Integer idMateria) {
 		Double notaObtenida = 0.0;
-		Alumno alumno = this.carrera.buscarAlumnoPorIdQueDevuelveElAlumno(idAlumno);
+		Alumno alumno = null;
+		 alumno = this.carrera.buscarAlumnoPorIdQueDevuelveElAlumno(idAlumno);
 		Materia materia = this.carrera.buscarMateriaPorIdQueDevuelveLaMateria(idMateria);
 		
 		for (int i = 0; i < alumno.getNotas().size(); i++) {		

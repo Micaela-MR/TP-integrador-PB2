@@ -1,6 +1,8 @@
 package ar.edu.unlam.pb2.Parcial01;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class Alumno {
@@ -15,6 +17,8 @@ public class Alumno {
 	private ArrayList<Materia>materiasAprobadas;
 	private ArrayList <Materia>materiasPorAprobar;
 	private ArrayList <Comision>comisionesInscripto;
+
+	
 	
 	public Alumno(Integer id, Integer dni,  String nombre, String apellido,String fechaDeNacimiento) {
 		this.id = id;
@@ -41,6 +45,8 @@ public class Alumno {
 		this.comisionesInscripto = new ArrayList <Comision>();
 	}
 	
+	
+
 	public Boolean noRendirDosRecuperatorios() {
 		Boolean noRendir=false;
 		for(int i=0;i<notas.size();i++) {
@@ -63,7 +69,6 @@ public class Alumno {
 		
 		this.comisionesInscripto.add(comision);
 	}
-	
 	
 	
 	public ArrayList<Materia> getMateriasAprobadas() {

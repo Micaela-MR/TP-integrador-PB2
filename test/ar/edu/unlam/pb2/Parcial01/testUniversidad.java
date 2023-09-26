@@ -6,6 +6,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
 
 import org.junit.Test;
@@ -129,6 +130,19 @@ public class testUniversidad {
 		}
 		
 		@Test
+		public void quesePuedaAgregarAlumnoACarrera() throws ParseException {
+			Universidad unlam = new Universidad("Unlam");
+			CicloLectivo anio2023 = new CicloLectivo(1, "31-07-2023", "03-08-2023", "14-08-2023", "02-12-2023");
+			Carrera ingenieria = new Carrera(01, "ingenieria");
+			Materia programacion = new Materia(01, "programacion", ingenieria);
+			Comision borgeat = new Comision(3900,"noche",ingenieria, programacion, anio2023);
+			Alumno noelia = new Alumno(01, 35603447, "Noelia", "Cabrera", "01-10-1990");
+			Boolean ve = ingenieria.agregarAlumno(noelia);
+			
+			assertTrue(ve);
+		}
+		
+		@Test
 		public void quesePuedaBuscarAlumnoPordniQueDevuelveElAlumno() {
 			Carrera ingenieria = new Carrera(01, "ingenieria");
 			Alumno noelia = new Alumno(01, 35603447, "Noelia", "Cabrera", "01-10-1990");
@@ -221,7 +235,30 @@ public class testUniversidad {
 			assertEquals(ve, va);
 		}
 		
+		@Test
+		public void queSePuedanObtenerMateriasAprobadasParaUnAlumno() {
+			Carrera ingenieria = new Carrera(01, "ingenieria");
+			Alumno noelia = new Alumno(01, 35603447, "Noelia", "Cabrera", "01-10-1990");
+			ingenieria.agregarAlumno(noelia);
+			Integer idAlumno = noelia.getId();
+			ArrayList <Materia> va = ingenieria.obtenerMateriasAprobadasParaUnAlumno(idAlumno);
+			ArrayList <Materia> ve = new ArrayList<Materia>();
+			
+			assertEquals(ve, va);
+		}
 		
+		@Test
+		public void queSePuedanObtenerMateriasQueFaltanCursarParaUnAlumno() {
+			Carrera ingenieria = new Carrera(01, "ingenieria");
+			Alumno noelia = new Alumno(01, 35603447, "Noelia", "Cabrera", "01-10-1990");
+			ingenieria.agregarAlumno(noelia);
+			Integer idAlumno = noelia.getId();
+			ArrayList <Materia> va = ingenieria.obtenerMateriasQueFaltanCursarParaUnAlumno(idAlumno);
+			ArrayList <Materia> ve = new ArrayList<Materia>();
+			
+			assertEquals(ve, va);
+		}
 		
+
 	}
 
