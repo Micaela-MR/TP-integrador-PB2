@@ -14,6 +14,7 @@ public class Alumno {
 	private ArrayList <Evaluacion> notas;
 	private ArrayList<Materia>materiasAprobadas;
 	private ArrayList <Materia>materiasPorAprobar;
+	private ArrayList <Comision>comisionesInscripto;
 	
 	public Alumno(Integer id, Integer dni,  String nombre, String apellido,String fechaDeNacimiento) {
 		this.id = id;
@@ -24,6 +25,7 @@ public class Alumno {
 		this.notas = new ArrayList<Evaluacion>();
 		this.materiasAprobadas = new ArrayList<Materia>();
 		this.materiasPorAprobar = new ArrayList<Materia>();
+		this.comisionesInscripto = new ArrayList <Comision>();
 	}
 
 	public Alumno(Integer id, Integer dni, String nombre, String apellido,  String fechaDeNacimiento, String fechaIngreso) {
@@ -36,6 +38,7 @@ public class Alumno {
 		this.notas = new ArrayList<Evaluacion>();
 		this.materiasAprobadas = new ArrayList<Materia>();
 		this.materiasPorAprobar = new ArrayList<Materia>();
+		this.comisionesInscripto = new ArrayList <Comision>();
 	}
 	
 	public Boolean noRendirDosRecuperatorios() {
@@ -56,7 +59,11 @@ public class Alumno {
 		
 	}
 	
-
+	public void agregarComisionesInscripto(Comision comision) {
+		
+		this.comisionesInscripto.add(comision);
+	}
+	
 	
 	
 	public ArrayList<Materia> getMateriasAprobadas() {
@@ -130,6 +137,16 @@ public class Alumno {
 
 	public void setNotas(ArrayList<Evaluacion> notas) {
 		this.notas = notas;
+	}
+	
+	
+
+	public ArrayList<Comision> getComisionesInscripto() {
+		return comisionesInscripto;
+	}
+
+	public void setComisionesInscripto(ArrayList<Comision> comisionesInscripto) {
+		this.comisionesInscripto = comisionesInscripto;
 	}
 
 	public void agregarNota(Evaluacion nota) {

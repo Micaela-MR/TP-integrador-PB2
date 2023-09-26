@@ -1,6 +1,9 @@
 package ar.edu.unlam.pb2.Parcial01;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 
 public class Comision {
@@ -33,18 +36,37 @@ public class Comision {
 	
 	public Boolean inscribirAlumnoAComision (Integer dni, Integer idComision){
 		Boolean seAgrego = false;
-		Alumno nuevoalumno = this.carrera.buscarAlumnoPordniQueDevuelveElAlumno(dni);
+		Alumno nuevoAlumno = carrera.buscarAlumnoPordniQueDevuelveElAlumno(dni);
+		Comision comision = this.materia.buscarComisionPorIdQueDevuelvaComision(idComision);
+		SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
+        Calendar calendar = Calendar.getInstance();
+        Date fechaActual = calendar.getTime();
+        String formattedDate = formato.format(fechaActual);
+        for (int j = 0; j < nuevoAlumno.getComisionesInscripto().size(); j++) {	
 		if (this.carrera.buscarAlumnoPorDni(dni)) {
-			if(this.materia.buscarComisionPorId(idComision)) {
-				
-				alumnosComision.add(nuevoalumno);
-				 seAgrego = true;
+			if(nuevoAlumno.getComisionesInscripto().get(j).getId().equals(idComision)) {
+				if(!this.materia.correlativasPromocionadas()) {
+					if(ciclo.getFechaInicioInscripcion().after(fechaActual) && ciclo.getFechaFinalizacionInscripcion().before(fechaActual) ) {
+						if(this.aula.getCantidadDeAlumnos()<this.aula.getCANTIDAD_MAXIMA_DE_ALUMNOS()) {
+							if(!nuevoAlumno.getComisionesInscripto().get(j).getTurno().equals(comision.getTurno())) {
+								if(!nuevoAlumno.getMateriasAprobadas().contains(comision.getMateria())) {
+									alumnosComision.add(nuevoAlumno);
+									 seAgrego = true;
+								}
+							}
+						}
+					}		
 			}
+		 }
+		}
+			
 		}
 		return seAgrego;
  
 
 	}
+	
+
 	
 	
 	public Boolean asignarDocentesAComision(Profesor docenteAAgregar) { //de Mica
@@ -81,7 +103,7 @@ public class Comision {
 		
 	}
 
-
+	
 
 	public Integer getId() {
 		return id;

@@ -112,7 +112,7 @@ public class testUniversidad {
 		
 		
 		@Test
-		public void queSePuedaAgregarAlumnoAComision() throws ParseException {
+		public void queSePuedaInscribirAlumnoAComision() throws ParseException {
 			Universidad unlam = new Universidad("Unlam");
 			CicloLectivo anio2023 = new CicloLectivo(1, "31-07-2023", "03-08-2023", "14-08-2023", "02-12-2023");
 			Carrera ingenieria = new Carrera(01, "ingenieria");
@@ -128,6 +128,17 @@ public class testUniversidad {
 			assertTrue(ve);
 		}
 		
+		@Test
+		public void quesePuedaBuscarAlumnoPordniQueDevuelveElAlumno() {
+			Carrera ingenieria = new Carrera(01, "ingenieria");
+			Alumno noelia = new Alumno(01, 35603447, "Noelia", "Cabrera", "01-10-1990");
+			ingenieria.agregarAlumno(noelia);
+			Integer dniAlumno = noelia.getDni();
+			Alumno va = ingenieria.buscarAlumnoPordniQueDevuelveElAlumno(dniAlumno);
+			
+			assertEquals(noelia, va);
+			
+		}
 		@Test
 		public void queSePuedaObtenerNota() throws ParseException{
 			Universidad unlam = new Universidad("Unlam");

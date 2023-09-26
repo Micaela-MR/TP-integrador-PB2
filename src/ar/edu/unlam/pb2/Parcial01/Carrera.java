@@ -51,7 +51,7 @@ public class Carrera {
  		return materiaEncontradaPorId;
  	}
       
-  
+   
 
 
 
@@ -79,7 +79,7 @@ public class Carrera {
 		Alumno alumnoEncontradoPorDni = null;
 		for (int i = 0; i < alumnos.size(); i++) {
 			if(this.alumnos.get(i).getDni()== dniAlumno) {
-				alumnoEncontradoPorDni = this.alumnos.get(i);
+				alumnoEncontradoPorDni = alumnos.get(i);
 			}
 		}
 		return alumnoEncontradoPorDni;
