@@ -14,6 +14,7 @@ public class Materia {
 	private Carrera carrera;
 	private ArrayList <Comision> comisiones;
 	private ArrayList <Evaluacion> notas;
+	private EstadoDeLaMateria estadoMateria;
 	
 	
 	
@@ -110,26 +111,44 @@ public class Materia {
 	}
 	public Boolean registrarNota (Integer idComision, Integer idAlumno, Evaluacion nota) {
 		Boolean notaIngresada=false;
-		for(int i = 0; i < comisiones.size(); i++) {
-			if(this.comisiones.get(i).getId().equals(idComision)) {
-				comisiones.get(i).buscarAlumnoPorId(idAlumno).agregarNota(nota);
-				notaIngresada=true;
+		if(!this.correlativasPromocionadas() && nota.getNota() >= 7) {
+			notaIngresada=false;
+		} else {
+			for(int i = 0; i < comisiones.size(); i++) {
+				Alumno alumno = this.comisiones.get(i).buscarAlumnoPorId(idAlumno);
+				if(this.comisiones.get(i).getId().equals(idComision) && 
+				   !alumno.noRendirDosRecuperatorios()) {
+					alumno.agregarNota(nota);
+					if(nota.getNota()>7 && nota.getNota()<10) {
+							alumno.agregarMateriaAprobada(comisiones.get(i).getMateria());
+					notaIngresada = true;
+				}
 			}
+		  }
 		}
 		return notaIngresada;
 	}
-	public Integer obtenerNota(Integer idAlumno, Integer idMateria) {
-		Integer notaObtenida = 0;
+	
+	public Boolean correlativasPromocionadas() {
+		for(int i=0;i<correlativas.size();i++) {
+			if(!correlativas.get(i).getEstadoMateria().equals(EstadoDeLaMateria.promocionada)) {
+				return false;
+			}
+		}return true;
+	}
+	
+	
+	public Double obtenerNota(Integer idAlumno, Integer idMateria) {
+		Double notaObtenida = 0.0;
 		Alumno alumno = this.carrera.buscarAlumnoPorIdQueDevuelveElAlumno(idAlumno);
 		Materia materia = this.carrera.buscarMateriaPorIdQueDevuelveLaMateria(idMateria);
-		for (int i = 0; i < notas.size(); i++) {		
-		//	if(notas.get(i).getMateria().equals(materia)) {
-		//		if(notas.get(i).getAlumno().equals(alumno)) {
-			
-				notaObtenida = notas.get(i).getNota();
+		
+		for (int i = 0; i < alumno.getNotas().size(); i++) {		
+			if( alumno.getNotas().get(i).getMateria().equals(materia)) {				
+				notaObtenida = alumno.getNotas().get(i).getNota();	
+	          
 			}
-		//	}
-	//	}
+		}
 		return notaObtenida;
 	}
 	
@@ -222,6 +241,18 @@ public class Materia {
 
 	public void setNotas(ArrayList<Evaluacion> notas) {
 		this.notas = notas;
+	}
+
+
+
+	public EstadoDeLaMateria getEstadoMateria() {
+		return estadoMateria;
+	}
+
+
+
+	public void setEstadoMateria(EstadoDeLaMateria estadoMateria) {
+		this.estadoMateria = estadoMateria;
 	}
 	
 	

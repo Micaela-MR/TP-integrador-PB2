@@ -98,11 +98,22 @@ public class Carrera {
  	}
     
     
-     public String obtenerMateriasAprobadasParaUnAlumno(Integer idAlumno) {
-    	 return "nop";
-     }
+    public ArrayList <Materia> obtenerMateriasAprobadasParaUnAlumno(Integer idAlumno){
+		Alumno alumno = this.buscarAlumnoPorIdQueDevuelveElAlumno(idAlumno);	
+		return alumno.getMateriasAprobadas();
+	}
 
-
+   public ArrayList <Materia> obtenerMateriasQueFaltanCursarParaUnAlumno(Integer idAlumno){
+	   Alumno alumno = this.buscarAlumnoPorIdQueDevuelveElAlumno(idAlumno);
+	   for (int i = 0; i < this.materias.size(); i++) {
+		for (int j = 0; j < alumno.getMateriasAprobadas().size(); j++) {
+			if(this.materias.get(i).getId()!=alumno.getMateriasAprobadas().get(j).getId()) {
+				alumno.getMateriasPorAprobar().add(this.materias.get(i));
+			}
+		}
+	}
+	   return alumno.getMateriasPorAprobar();
+   }
 
 	public Integer getId() {
 		return id;
@@ -136,19 +147,20 @@ public class Carrera {
 		this.alumnos = alumnos;
 	}
 	
-
-
-
-    
-	
-	
-	
-	public String obtenerMateriasQueFaltanCursarParaUnAlumno(Integer idAlumno) {
-		return "nop";
-	}
-	
 	public Double calcularPromedio(Integer idAlumno) {
-		return 0.0;
+		 Alumno alumno = this.buscarAlumnoPorIdQueDevuelveElAlumno(idAlumno);
+		 Double promedio = 0.0;
+		 for (int j = 0; j < alumno.getNotas().size(); j++) {
+			 alumno.getNotas().get(j);		 
+				Double suma = 0.0;
+				
+					suma += alumno.getNotas().get(j).getNota();
+					promedio = (Double) suma / alumno.getNotas().size();
+					
+					
+			}
+		
+		return promedio;
 	}
 }
 

@@ -137,13 +137,13 @@ public class testUniversidad {
 			Comision borgeat = new Comision(3900,"noche",ingenieria, programacion, anio2023);
 			Alumno noelia = new Alumno(01, 35603447, "Noelia", "Cabrera", "01-10-1990");		
 		
-			Evaluacion nota = new Evaluacion(TipoDeNota.PrimerParc, 7, programacion, noelia);
+			Evaluacion nota = new Evaluacion(TipoDeNota.PrimerParc, 7.0, programacion, noelia);
 			Integer idComision = borgeat.getId();
 			Integer idAlumno = noelia.getId();
 			Integer idMateria = programacion.getId();
 			programacion.registrarNota(idComision, idAlumno, nota);
-			Integer va = programacion.obtenerNota(idAlumno, idMateria);
-			Integer ve = 7;
+			Double va = programacion.obtenerNota(idAlumno, idMateria);
+			Double ve = 7.0;
 		
 			assertEquals(ve, va);
 		}
@@ -157,7 +157,7 @@ public class testUniversidad {
 			Comision borgeat = new Comision(3900,"noche",ingenieria, programacion, anio2023);
 			Alumno noelia = new Alumno(01, 35603447, "Noelia", "Cabrera", "01-10-1990");		
 		
-			Evaluacion nota = new Evaluacion(TipoDeNota.PrimerParc, 7, programacion, noelia);
+			Evaluacion nota = new Evaluacion(TipoDeNota.PrimerParc, 7.0, programacion, noelia);
 			Integer idComision = borgeat.getId();
 			Integer idAlumno = noelia.getId();
 			Integer idMateria = programacion.getId();

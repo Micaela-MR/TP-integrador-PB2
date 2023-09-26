@@ -162,6 +162,16 @@ public class Comision {
 		this.turno = turno;
 	}
 
+     
+	public Materia getMateria() {
+		return materia;
+	}
+
+
+	public void setMateria(Materia materia) {
+		this.materia = materia;
+	}
+
 
 	public Alumno buscarAlumnoPorId (Integer idAlumno) {
 		Alumno alumnoEncontrado=null;
