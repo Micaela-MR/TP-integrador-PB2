@@ -51,19 +51,7 @@ public class Carrera {
  		return materiaEncontradaPorId;
  	}
       
-      public Boolean agregarCorrelatividad(Integer idMateria, Integer idCorrelativa) {
-  		Boolean seAgregoCorrelativa = false;
-          for (int i = 0; i < materias.size(); i++) {
-        	  for (int j = 0; j < materias.size(); j++) {
-  			if(materias.get(i).getId() == idMateria && materias.get(j).getId() == idCorrelativa ) {
-  				Materia correlativaNueva = buscarMateriaPorIdQueDevuelveLaMateria(idCorrelativa);
-  				correlativas.add(correlativaNueva);
-  				 seAgregoCorrelativa = true;
-  			}
-  		}
-          }
-  		return seAgregoCorrelativa;
-  	}
+  
 
 
 

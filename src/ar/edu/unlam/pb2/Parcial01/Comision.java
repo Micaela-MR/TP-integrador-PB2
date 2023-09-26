@@ -81,7 +81,7 @@ public class Comision {
 		
 	}
 
-	
+
 
 	public Integer getId() {
 		return id;
@@ -161,6 +161,18 @@ public class Comision {
 	public void setTurno(String turno) {
 		this.turno = turno;
 	}
+
+
+	public Alumno buscarAlumnoPorId (Integer idAlumno) {
+		Alumno alumnoEncontrado=null;
+		for(int i=0;i<alumnosComision.size();i++) {
+			if(alumnosComision.get(i).getId().equals(idAlumno)) {
+				alumnoEncontrado=alumnosComision.get(i);
+			}
+		}
+		return alumnoEncontrado;
+	}
+	
 	
 
 	

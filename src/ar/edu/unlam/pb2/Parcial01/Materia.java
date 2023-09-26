@@ -12,7 +12,8 @@ public class Materia {
 	private ArrayList <Profesor>profesores;
 	private ArrayList <Materia> correlativas;
 	private Carrera carrera;
-	private ArrayList <Comision> comision;
+	private ArrayList <Comision> comisiones;
+	private ArrayList <Evaluacion> notas;
 	
 	
 	
@@ -24,18 +25,19 @@ public class Materia {
 		this.carrera = carrera;
 		this.profesores = new ArrayList<Profesor>();
 		this.correlativas = new ArrayList<Materia>();
-		this.comision = new ArrayList<Comision>();
+		this.comisiones = new ArrayList<Comision>();
+		this.notas = new ArrayList<Evaluacion>();
 	}
 
 
 
 	public Boolean agregarComision(Comision comision){ //deMica
 		Boolean comisionAgregada=false;
-		if(this.comision.isEmpty()) {
-			this.comision.add(comision);
+		if(this.comisiones.isEmpty()) {
+			this.comisiones.add(comision);
 			comisionAgregada = true;
 		}else if(!this.buscarComisionPorId(comision.getId()) && !this.buscarComisionPorTurnoYCicloLectivo(comision)) {
-			this.comision.add(comision);
+			this.comisiones.add(comision);
 			comisionAgregada=true;
 		}
 		return comisionAgregada;
@@ -43,9 +45,9 @@ public class Materia {
 	
 	public Boolean buscarComisionPorTurnoYCicloLectivo(Comision comision) {
 		Boolean comisionEncontrada=false;
-		for (int i = 0; i < this.comision.size(); i++) {
-				if(this.comision.get(i).getCiclo().getId().equals(comision.getCiclo().getId()) &&
-				   this.comision.get(i).getTurno().equals(comision.getTurno())) {
+		for (int i = 0; i < this.comisiones.size(); i++) {
+				if(this.comisiones.get(i).getCiclo().getId().equals(comision.getCiclo().getId()) &&
+				   this.comisiones.get(i).getTurno().equals(comision.getTurno())) {
 					comisionEncontrada=true;
 				}
 			}
@@ -54,8 +56,8 @@ public class Materia {
 	
 	public Boolean buscarComisionPorId(Integer idComision) {
 		Boolean comisionEncontrada = false;
-		for (int i = 0; i < comision.size(); i++) {
-			if(this.comision.get(i).getId().equals(idComision)) {
+		for (int i = 0; i < comisiones.size(); i++) {
+			if(this.comisiones.get(i).getId().equals(idComision)) {
 				comisionEncontrada = true;
 			}
 		}
@@ -91,20 +93,48 @@ public class Materia {
 		}
 		return profeEncontradoPorDni;
 	}
+	public Boolean agregarCorrelatividad(Integer idMateria, Integer idCorrelativa) {
+		Boolean seAgregoCorrelativa = false;
 	
+        ArrayList <Materia> materiasCarrera = this.carrera.getMaterias();
+        for (int i = 0; i < materiasCarrera.size(); i++) {
+        	for (int j = 0; j <  materiasCarrera.size(); j++) {
+			if(materiasCarrera.get(i).getId() == idMateria && materiasCarrera.get(j).getId() == idCorrelativa ) {
+				Materia correlativaNueva = materiasCarrera.get(j);
+				correlativas.add(correlativaNueva);
+				 seAgregoCorrelativa = true;
+			}
+		}
+        }
+		return seAgregoCorrelativa;
+	}
+	public Boolean registrarNota (Integer idComision, Integer idAlumno, Evaluacion nota) {
+		Boolean notaIngresada=false;
+		for(int i = 0; i < comisiones.size(); i++) {
+			if(this.comisiones.get(i).getId().equals(idComision)) {
+				comisiones.get(i).buscarAlumnoPorId(idAlumno).agregarNota(nota);
+				notaIngresada=true;
+			}
+		}
+		return notaIngresada;
+	}
 	public Integer obtenerNota(Integer idAlumno, Integer idMateria) {
+		Integer notaObtenida = 0;
 		Alumno alumno = this.carrera.buscarAlumnoPorIdQueDevuelveElAlumno(idAlumno);
-		
-		
-		return 0;
-	}
-	public void eliminarCorrelatividad1(Integer idMateria, Integer idCorrelativaAELiminar) {
-		
+		Materia materia = this.carrera.buscarMateriaPorIdQueDevuelveLaMateria(idMateria);
+		for (int i = 0; i < notas.size(); i++) {		
+		//	if(notas.get(i).getMateria().equals(materia)) {
+		//		if(notas.get(i).getAlumno().equals(alumno)) {
+			
+				notaObtenida = notas.get(i).getNota();
+			}
+		//	}
+	//	}
+		return notaObtenida;
 	}
 	
-	public int registrarNota1 (Integer idComision, Integer idAlumno, Integer nota) {
-		return 0;
-	}
+
+	
 
 
 	public Integer getId() {
@@ -157,5 +187,46 @@ public class Materia {
 	public void setCarrera(Carrera carrera) {
 		this.carrera = carrera;
 	}
+
+
+
+	public ArrayList<Profesor> getProfesores() {
+		return profesores;
+	}
+
+
+
+	public void setProfesores(ArrayList<Profesor> profesores) {
+		this.profesores = profesores;
+	}
+
+
+
+	public ArrayList<Comision> getComisiones() {
+		return comisiones;
+	}
+
+
+
+	public void setComisiones(ArrayList<Comision> comisiones) {
+		this.comisiones = comisiones;
+	}
+
+
+
+	public ArrayList<Evaluacion> getNotas() {
+		return notas;
+	}
+
+
+
+	public void setNotas(ArrayList<Evaluacion> notas) {
+		this.notas = notas;
+	}
+	
+	
+	
+	
+	
 	
 }

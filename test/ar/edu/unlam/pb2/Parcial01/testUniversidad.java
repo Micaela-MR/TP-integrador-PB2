@@ -102,7 +102,7 @@ public class testUniversidad {
 			Materia programacion2 = new Materia(02, "programacion2", ingenieria);
 			ingenieria.agregarMateria(programacion1);
 			ingenieria.agregarMateria(programacion2);
-			Boolean ve = ingenieria.agregarCorrelatividad((Integer)01, (Integer)02);
+			Boolean ve = programacion1.agregarCorrelatividad((Integer)01, (Integer)02);
 			
 			assertTrue(ve);
 		}
@@ -128,6 +128,44 @@ public class testUniversidad {
 			assertTrue(ve);
 		}
 		
+		@Test
+		public void queSePuedaObtenerNota() throws ParseException{
+			Universidad unlam = new Universidad("Unlam");
+			CicloLectivo anio2023 = new CicloLectivo(1, "31-07-2023", "03-08-2023", "14-08-2023", "02-12-2023");
+			Carrera ingenieria = new Carrera(01, "ingenieria");
+			Materia programacion = new Materia(01, "programacion", ingenieria);
+			Comision borgeat = new Comision(3900,"noche",ingenieria, programacion, anio2023);
+			Alumno noelia = new Alumno(01, 35603447, "Noelia", "Cabrera", "01-10-1990");		
+		
+			Evaluacion nota = new Evaluacion(TipoDeNota.PrimerParc, 7, programacion, noelia);
+			Integer idComision = borgeat.getId();
+			Integer idAlumno = noelia.getId();
+			Integer idMateria = programacion.getId();
+			programacion.registrarNota(idComision, idAlumno, nota);
+			Integer va = programacion.obtenerNota(idAlumno, idMateria);
+			Integer ve = 7;
+		
+			assertEquals(ve, va);
+		}
+		
+		@Test
+		public void queSePuedaRegistrarUnaNota() throws ParseException {
+			Universidad unlam = new Universidad("Unlam");
+			CicloLectivo anio2023 = new CicloLectivo(1, "31-07-2023", "03-08-2023", "14-08-2023", "02-12-2023");
+			Carrera ingenieria = new Carrera(01, "ingenieria");
+			Materia programacion = new Materia(01, "programacion", ingenieria);
+			Comision borgeat = new Comision(3900,"noche",ingenieria, programacion, anio2023);
+			Alumno noelia = new Alumno(01, 35603447, "Noelia", "Cabrera", "01-10-1990");		
+		
+			Evaluacion nota = new Evaluacion(TipoDeNota.PrimerParc, 7, programacion, noelia);
+			Integer idComision = borgeat.getId();
+			Integer idAlumno = noelia.getId();
+			Integer idMateria = programacion.getId();
+			Boolean ve =  programacion.registrarNota(idComision, idAlumno, nota);
+			
+			assertTrue(ve);
+
+		}
 		@Test 
 		public void queSePuedaBuscarAlumnoPorDni() {
 			Carrera ingenieria = new Carrera(01, "ingenieria");
