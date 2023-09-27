@@ -1,8 +1,12 @@
 package ar.edu.unlam.pb2.Parcial01;
 
+<<<<<<< Updated upstream
 import java.text.ParseException;
+=======
+>>>>>>> Stashed changes
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class Alumno {
@@ -17,16 +21,28 @@ public class Alumno {
 	private ArrayList <Materia> materiasAprobadas;
 	private ArrayList <Materia>materiasPorAprobar;
 	private ArrayList <Evaluacion> notas;
+	private ArrayList<Materia>materiasAprobadas;
+	private ArrayList <Materia>materiasPorAprobar;
+	private ArrayList <Comision>comisionesInscripto;
+
 	
+<<<<<<< Updated upstream
 	SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-M-yyyy");
 	
 	public Alumno(Integer id, Integer dni,  String nombre, String apellido, String fechaDeNacimiento) throws ParseException {
+=======
+	
+	public Alumno(Integer id, Integer dni,  String nombre, String apellido,String fechaDeNacimiento) {
+>>>>>>> Stashed changes
 		this.id = id;
 		this.dni = dni;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.fechaDeNacimiento = formatoFecha.parse(fechaDeNacimiento);
 		this.notas = new ArrayList<Evaluacion>();
+		this.materiasAprobadas = new ArrayList<Materia>();
+		this.materiasPorAprobar = new ArrayList<Materia>();
+		this.comisionesInscripto = new ArrayList <Comision>();
 	}
 
 	public Alumno(Integer id, Integer dni, String nombre, String apellido,  String fechaDeNacimiento, String fechaIngreso) throws ParseException {
@@ -34,9 +50,60 @@ public class Alumno {
 		this.dni = dni;
 		this.nombre = nombre;
 		this.apellido = apellido;
+<<<<<<< Updated upstream
 		this.fechaDeNacimiento = formatoFecha.parse(fechaDeNacimiento);
 		this.fechaIngreso = formatoFecha.parse(fechaIngreso);
 		this.notas = new ArrayList<Evaluacion>();
+=======
+		this.fechaDeNacimiento = fechaDeNacimiento;
+		this.fechaIngreso = fechaIngreso;
+		this.notas = new ArrayList<Evaluacion>();
+		this.materiasAprobadas = new ArrayList<Materia>();
+		this.materiasPorAprobar = new ArrayList<Materia>();
+		this.comisionesInscripto = new ArrayList <Comision>();
+	}
+	
+	
+
+	public Boolean noRendirDosRecuperatorios() {
+		Boolean noRendir=false;
+		for(int i=0;i<notas.size();i++) {
+			if(notas.get(i).getTipoDeNota().equals(TipoDeNota.Rec1Parcial) ||
+			   notas.get(i).getTipoDeNota().equals(TipoDeNota.Rec2Parcial)) {
+			return noRendir= true;
+		} else {
+			return noRendir= false;
+		}
+		}
+		return noRendir;
+	}
+	
+	public void agregarMateriaAprobada(Materia materia){
+		this.materiasAprobadas.add(materia);
+		
+	}
+	
+	public void agregarComisionesInscripto(Comision comision) {
+		
+		this.comisionesInscripto.add(comision);
+	}
+	
+	
+	public ArrayList<Materia> getMateriasAprobadas() {
+		return materiasAprobadas;
+	}
+
+	public void setMateriasAprobadas(ArrayList<Materia> materiasAprobadas) {
+		this.materiasAprobadas = materiasAprobadas;
+	}
+
+	public ArrayList<Materia> getMateriasPorAprobar() {
+		return materiasPorAprobar;
+	}
+
+	public void setMateriasPorAprobar(ArrayList<Materia> materiasPorAprobar) {
+		this.materiasPorAprobar = materiasPorAprobar;
+>>>>>>> Stashed changes
 	}
 
 	public Integer getId() {
@@ -87,6 +154,7 @@ public class Alumno {
 		this.fechaIngreso = fechaIngreso;
 	}
 
+	
 	public ArrayList<Evaluacion> getNotas() {
 		return notas;
 	}
@@ -95,14 +163,19 @@ public class Alumno {
 		this.notas = notas;
 	}
 	
+<<<<<<< Updated upstream
 	public ArrayList<Materia> getMateriasAprobadas() {
 		return materiasAprobadas;
 	}
+=======
+	
+>>>>>>> Stashed changes
 
 	public ArrayList<Comision> getComisionesInscripto() {
 		return comisionesInscripto;
 	}
 
+<<<<<<< Updated upstream
 	public ArrayList<Materia> getMateriasPorAprobar() {
 		return materiasPorAprobar;
 	}
@@ -155,3 +228,19 @@ public class Alumno {
 		return (Integer)promedio/notas.size();
 	}
 }
+=======
+	public void setComisionesInscripto(ArrayList<Comision> comisionesInscripto) {
+		this.comisionesInscripto = comisionesInscripto;
+	}
+
+	public void agregarNota(Evaluacion nota) {
+		
+		if(nota.getNota()>1 && nota.getNota()<10) {
+			notas.add(nota);
+		}
+		
+	}
+	
+
+}
+>>>>>>> Stashed changes
