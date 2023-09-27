@@ -1,6 +1,8 @@
 package ar.edu.unlam.pb2.Parcial01;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class Alumno {
@@ -12,14 +14,22 @@ public class Alumno {
 	private String fechaDeNacimiento;
 	private String fechaIngreso;
 	private ArrayList <Evaluacion> notas;
+	private ArrayList<Materia>materiasAprobadas;
+	private ArrayList <Materia>materiasPorAprobar;
+	private ArrayList <Comision>comisionesInscripto;
+
 	
-	public Alumno(Integer id, Integer dni,  String nombre, String apellido, String fechaDeNacimiento) {
+	
+	public Alumno(Integer id, Integer dni,  String nombre, String apellido,String fechaDeNacimiento) {
 		this.id = id;
 		this.dni = dni;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.fechaDeNacimiento = fechaDeNacimiento;
 		this.notas = new ArrayList<Evaluacion>();
+		this.materiasAprobadas = new ArrayList<Materia>();
+		this.materiasPorAprobar = new ArrayList<Materia>();
+		this.comisionesInscripto = new ArrayList <Comision>();
 	}
 
 	public Alumno(Integer id, Integer dni, String nombre, String apellido,  String fechaDeNacimiento, String fechaIngreso) {
@@ -29,6 +39,52 @@ public class Alumno {
 		this.apellido = apellido;
 		this.fechaDeNacimiento = fechaDeNacimiento;
 		this.fechaIngreso = fechaIngreso;
+		this.notas = new ArrayList<Evaluacion>();
+		this.materiasAprobadas = new ArrayList<Materia>();
+		this.materiasPorAprobar = new ArrayList<Materia>();
+		this.comisionesInscripto = new ArrayList <Comision>();
+	}
+	
+	
+
+	public Boolean noRendirDosRecuperatorios() {
+		Boolean noRendir=false;
+		for(int i=0;i<notas.size();i++) {
+			if(notas.get(i).getTipoDeNota().equals(TipoDeNota.Rec1Parcial) ||
+			   notas.get(i).getTipoDeNota().equals(TipoDeNota.Rec2Parcial)) {
+			return noRendir= true;
+		} else {
+			return noRendir= false;
+		}
+		}
+		return noRendir;
+	}
+	
+	public void agregarMateriaAprobada(Materia materia){
+		this.materiasAprobadas.add(materia);
+		
+	}
+	
+	public void agregarComisionesInscripto(Comision comision) {
+		
+		this.comisionesInscripto.add(comision);
+	}
+	
+	
+	public ArrayList<Materia> getMateriasAprobadas() {
+		return materiasAprobadas;
+	}
+
+	public void setMateriasAprobadas(ArrayList<Materia> materiasAprobadas) {
+		this.materiasAprobadas = materiasAprobadas;
+	}
+
+	public ArrayList<Materia> getMateriasPorAprobar() {
+		return materiasPorAprobar;
+	}
+
+	public void setMateriasPorAprobar(ArrayList<Materia> materiasPorAprobar) {
+		this.materiasPorAprobar = materiasPorAprobar;
 	}
 
 	public Integer getId() {
@@ -79,6 +135,7 @@ public class Alumno {
 		this.fechaIngreso = fechaIngreso;
 	}
 
+	
 	public ArrayList<Evaluacion> getNotas() {
 		return notas;
 	}
@@ -86,14 +143,24 @@ public class Alumno {
 	public void setNotas(ArrayList<Evaluacion> notas) {
 		this.notas = notas;
 	}
+	
+	
 
+	public ArrayList<Comision> getComisionesInscripto() {
+		return comisionesInscripto;
+	}
 
-	public Boolean agregarNota(Evaluacion nota) {
+	public void setComisionesInscripto(ArrayList<Comision> comisionesInscripto) {
+		this.comisionesInscripto = comisionesInscripto;
+	}
+
+	public void agregarNota(Evaluacion nota) {
+		
 		if(nota.getNota()>1 && nota.getNota()<10) {
 			notas.add(nota);
 		}
-		return null;
+		
 	}
 	
-	
+
 }
