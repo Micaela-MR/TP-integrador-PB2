@@ -15,6 +15,7 @@ public class Alumno {
 	private Date fechaIngreso;
 	private ArrayList <Comision> comisionesInscripto;
 	private ArrayList <Materia> materiasAprobadas;
+	private ArrayList <Materia>materiasPorAprobar;
 	private ArrayList <Evaluacion> notas;
 	
 	SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-M-yyyy");
@@ -101,9 +102,12 @@ public class Alumno {
 	public ArrayList<Comision> getComisionesInscripto() {
 		return comisionesInscripto;
 	}
+
+	public ArrayList<Materia> getMateriasPorAprobar() {
+		return materiasPorAprobar;
+	}
+
 	
-
-
 	public Boolean agregarNota(Evaluacion nota) {
 		if(nota.getNota()>1 && nota.getNota()<10 && !this.noRendirDosRecuperatorios()) {
 			notas.add(nota);
@@ -126,11 +130,19 @@ public class Alumno {
 	
 	public Boolean cargarNotaFinal(Evaluacion nota) { //---------------------
 		Boolean cargar=false;
+		Boolean primerParcialAprobado=false;
+		Boolean segundoParcialAprobado=false;
+		
 		for(int i=0;i<notas.size();i++) {
-			if((notas.get(i).getEstado().equals(EstadoExamen.aprobado) && notas.get(i).getTipoDeNota().equals(TipoDeNota.PrimerParc)) &&
-			  (notas.get(i).getEstado().equals(EstadoExamen.aprobado) && notas.get(i).getTipoDeNota().equals(TipoDeNota.SegundoParc))) {
-			return cargar= true;
+			if(notas.get(i).getEstado().equals(EstadoExamen.aprobado) && notas.get(i).getTipoDeNota().equals(TipoDeNota.PrimerParc)){
+				primerParcialAprobado = true;
+			} else if (notas.get(i).getEstado().equals(EstadoExamen.aprobado) && notas.get(i).getTipoDeNota().equals(TipoDeNota.SegundoParc)) {
+				segundoParcialAprobado=true;
+			}
 		}
+		
+		if(primerParcialAprobado && segundoParcialAprobado) {
+			cargar=true;
 		}
 		return cargar;
 	}

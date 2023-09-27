@@ -2,7 +2,6 @@ package ar.edu.unlam.pb2.Parcial01;
 
 public class Aula {
 
-	private final Integer CANTIDAD_MAXIMA_DE_ALUMNOS = null;
 	private Integer id;
 	private Integer cantidadDeAlumnos;
 	
@@ -25,10 +24,6 @@ public class Aula {
 
 	public void setCantidadDeAlumnos(Integer cantidadDeAlumnos) {
 		this.cantidadDeAlumnos = cantidadDeAlumnos;
-	}
-
-	public Integer getCANTIDAD_MAXIMA_DE_ALUMNOS() {
-		return CANTIDAD_MAXIMA_DE_ALUMNOS;
 	}
 	
 	
