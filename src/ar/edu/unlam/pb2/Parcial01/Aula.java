@@ -9,22 +9,5 @@ public class Aula {
 		this.id = id;
 		this.cantidadDeAlumnos = cantidadDeAlumnos;
 	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public Integer getCantidadDeAlumnos() {
-		return cantidadDeAlumnos;
-	}
-
-	public void setCantidadDeAlumnos(Integer cantidadDeAlumnos) {
-		this.cantidadDeAlumnos = cantidadDeAlumnos;
-	}
-	
 	
 }

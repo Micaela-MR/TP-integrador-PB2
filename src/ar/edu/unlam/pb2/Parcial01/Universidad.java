@@ -5,22 +5,11 @@ import java.util.ArrayList;
 public class Universidad {
 	
 	private String nombre;
-	private String direccion;
 	private ArrayList<Carrera> carreras;
 	
-	public Universidad(String nombre, String direccion) {
+	public Universidad(String nombre, ArrayList<Carrera> carreras) {
 		this.nombre = nombre;
-		this.direccion = direccion;
-		this.carreras = new ArrayList<Carrera>();
+		this.carreras = carreras;
 	}	
 
-	public Boolean agregarCarrera(Carrera carrera) {
-		if(!carreras.contains(carrera)) {
-    		carreras.add(carrera);
-    		return true;
-    	} else {
-    		return false;
-    	}
-	}
-	
 }
