@@ -298,4 +298,46 @@ public class testUniversidad {
 	public void EliminarLaCorrelatividadDeUnaMateria() {
 		
 	}
+	
+	@Test
+	public void registrarNotaDeUnAlumno() throws ParseException {
+		Universidad unlam = new Universidad ("UNLaM");
+		CicloLectivo segundoCuatri = new CicloLectivo (1, "31-07-2023", "03-08-2023", "14-08-2023", "02-12-2023");
+		Carrera desarrolloWeb = new Carrera (1,"Desarrollo Web");
+		Materia pb1 = new Materia (1, "PB1");
+		Comision comision1 = new Comision (1, "T", segundoCuatri);
+		Alumno alumno = new Alumno (1, 43817073, "Micaela", "Mendez", "03-06-2002");
+		Evaluacion nota1 = new Evaluacion(TipoDeNota.PrimerParc, 7);
+		
+		unlam.agregarCarrera(desarrolloWeb);
+		unlam.agregarCicloLectivo(segundoCuatri);
+		desarrolloWeb.agregarMateria(pb1);
+		desarrolloWeb.agregarAlumno(alumno);
+		pb1.agregarComision(comision1);
+		comision1.asignarAlumnoAComision(alumno);
+		Boolean notaAgregada = pb1.registrarNota(1, 1, nota1);
+		
+		assertTrue(notaAgregada);
+	}
+	
+	@Test
+	public void NoRegistrarUnaNotaMayorASieteSiElAlumnoNoAproboLaMateriaCorrelativa() throws ParseException {
+		Universidad unlam = new Universidad ("UNLaM");
+		CicloLectivo segundoCuatri = new CicloLectivo (1, "31-07-2023", "03-08-2023", "14-08-2023", "02-12-2023");
+		Carrera desarrolloWeb = new Carrera (1,"Desarrollo Web");
+		Materia pb1 = new Materia (1, "PB1");
+		Materia pb2 = new Materia (2, "PB2");
+		Comision comision1 = new Comision (1, "T", segundoCuatri);
+		Alumno alumno = new Alumno (1, 43817073, "Micaela", "Mendez", "03-06-2002");
+		
+		unlam.agregarCarrera(desarrolloWeb);
+		unlam.agregarCicloLectivo(segundoCuatri);
+		desarrolloWeb.agregarMateria(pb1);
+		desarrolloWeb.agregarMateria(pb2);
+		desarrolloWeb.agregarAlumno(alumno);
+		desarrolloWeb.agregarCorrelatividad(1, 2);
+		
+		
+		
+	}
 }

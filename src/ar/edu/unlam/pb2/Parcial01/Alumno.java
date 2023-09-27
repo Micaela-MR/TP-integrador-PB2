@@ -111,8 +111,9 @@ public class Alumno {
 	public Boolean cargarNotaFinal(Evaluacion nota) { //---------------------
 		Boolean cargar=false;
 		for(int i=0;i<notas.size();i++) {
-			if(notas.get(i).getEstado().equals(EstadoExamen.aprobado)||
-			   notas.get(i).getTipoDeNota().equals(TipoDeNota.Rec2Parcial)) {
+			if(notas.get(i).getEstado().equals(EstadoExamen.aprobado) &&
+			  (notas.get(i).getTipoDeNota().equals(TipoDeNota.PrimerParc) ||
+			   notas.get(i).getTipoDeNota().equals(TipoDeNota.SegundoParc))) {
 			return cargar= true;
 		} else {
 			return cargar= false;
