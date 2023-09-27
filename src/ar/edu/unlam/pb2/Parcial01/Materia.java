@@ -119,6 +119,16 @@ public class Materia {
 		return comisionEncontrada;
 	}
 	
+	public Comision buscarYDevolverComisionPorId(Integer idComision) {
+		Comision comisionEncontrada = null;
+		for (int i = 0; i < comisiones.size(); i++) {
+			if(this.comisiones.get(i).getId().equals(idComision)) {
+				comisionEncontrada = comisiones.get(i);
+			}
+		}
+		return comisionEncontrada;
+	}
+	
 	
 	public Boolean agregarDocentes(Profesor docenteAgregar) {
 		 Boolean seAgrego = false;	

@@ -1,6 +1,9 @@
 package ar.edu.unlam.pb2.Parcial01;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 
 public class Carrera {
@@ -70,7 +73,7 @@ public class Carrera {
    	 }
 		
 	}
-    private boolean buscarMateriaPorId(Integer idMateria) {
+    public boolean buscarMateriaPorId(Integer idMateria) {
 		Boolean materiaEncontradaPorId = false;
 		for (int i = 0; i < materias.size(); i++) {
 			if(this.materias.get(i).getId()== idMateria) {
@@ -98,7 +101,17 @@ public class Carrera {
 		return alumnoEncontrado;
 	}
     
-    private Materia buscarMateriaPorIdQueDevuelveLaMateria(Integer idMateria) {
+    public Alumno buscarAlumnoPordniQueDevuelveElAlumno(Integer dniAlumno) {
+		Alumno alumnoEncontrado = null;
+		for(int i = 0; i < alumnos.size(); i++) {
+			if(this.alumnos.get(i).getDni().equals(dniAlumno)) {
+				alumnoEncontrado = alumnos.get(i);
+			}
+		}
+		return alumnoEncontrado;
+	}
+    
+    public Materia buscarMateriaPorIdQueDevuelveLaMateria(Integer idMateria) {
  		Materia materiaEncontradaPorId = null;
  		for (int i = 0; i < materias.size(); i++) {
  			if(this.materias.get(i).getId() == idMateria) {
@@ -123,7 +136,41 @@ public class Carrera {
   		return seAgregoCorrelativa;
   	}
     
-  	public Boolean eliminarCorrelatividad(Integer idMateria, Integer idCorrelativaAELiminar) {
+    public Boolean inscribirAlumnoAComision (Integer dni,Integer idMateria, Integer idComision){
+		  Boolean seAgrego = false;
+		  Alumno nuevoAlumno = this.buscarAlumnoPordniQueDevuelveElAlumno(dni);
+		  Materia materia = this.buscarMateriaPorIdQueDevuelveLaMateria(idMateria);
+		  Comision comision=materia.buscarYDevolverComisionPorId(idComision);
+		  //SimpleDateFormat formato = new SimpleDateFormat("dd-M-yyyy");
+	      Calendar calendar = Calendar.getInstance();
+	      Date fechaActual = calendar.getTime();
+	      //String formattedDate = formato.format(fechaActual);
+		  
+		  if (materia != null && nuevoAlumno!=null && comision!=null) {
+			  for(int i=0;i<materia.getComisiones().size();i++) {
+				  if(materia.correlativasPromocionadas()) {
+					  if(comision.getCiclo().getFechaFinalizacionInscripcion().after(fechaActual) && comision.getCiclo().getFechaInicioInscripcion().before(fechaActual)) {
+						  if(comision.getAula().getCantidadDeAlumnos() < comision.getAula().getCantidadDeAlumnos()) {
+							  if(!nuevoAlumno.getMateriasAprobadas().contains(materia)) {
+								  for(int j=0;j<nuevoAlumno.getComisionesInscripto().size();j++) {
+									  if(!nuevoAlumno.getComisionesInscripto().get(j).getTurno().equals(comision.getTurno())) {
+										  comision.inscribirAlumnoAComision(nuevoAlumno);
+										  seAgrego = true;
+									  }
+								  }
+								  
+								  
+							  }
+						  }
+					  }
+				  }
+				  
+			  }
+		  }
+		  return seAgrego;
+	}
+
+	public Boolean eliminarCorrelatividad(Integer idMateria, Integer idCorrelativaAELiminar) {
   		return false;
   	}
     

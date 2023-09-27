@@ -1,5 +1,7 @@
 package ar.edu.unlam.pb2.Parcial01;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -9,26 +11,31 @@ public class Alumno {
 	private Integer dni;
 	private String nombre;
 	private String apellido;
-	private String fechaDeNacimiento;
-	private String fechaIngreso;
+	private Date fechaDeNacimiento;
+	private Date fechaIngreso;
+	private ArrayList <Comision> comisionesInscripto;
+	private ArrayList <Materia> materiasAprobadas;
 	private ArrayList <Evaluacion> notas;
 	
-	public Alumno(Integer id, Integer dni,  String nombre, String apellido, String fechaDeNacimiento) {
+	SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-M-yyyy");
+	
+	public Alumno(Integer id, Integer dni,  String nombre, String apellido, String fechaDeNacimiento) throws ParseException {
 		this.id = id;
 		this.dni = dni;
 		this.nombre = nombre;
 		this.apellido = apellido;
-		this.fechaDeNacimiento = fechaDeNacimiento;
+		this.fechaDeNacimiento = formatoFecha.parse(fechaDeNacimiento);
 		this.notas = new ArrayList<Evaluacion>();
 	}
 
-	public Alumno(Integer id, Integer dni, String nombre, String apellido,  String fechaDeNacimiento, String fechaIngreso) {
+	public Alumno(Integer id, Integer dni, String nombre, String apellido,  String fechaDeNacimiento, String fechaIngreso) throws ParseException {
 		this.id = id;
 		this.dni = dni;
 		this.nombre = nombre;
 		this.apellido = apellido;
-		this.fechaDeNacimiento = fechaDeNacimiento;
-		this.fechaIngreso = fechaIngreso;
+		this.fechaDeNacimiento = formatoFecha.parse(fechaDeNacimiento);
+		this.fechaIngreso = formatoFecha.parse(fechaIngreso);
+		this.notas = new ArrayList<Evaluacion>();
 	}
 
 	public Integer getId() {
@@ -63,19 +70,19 @@ public class Alumno {
 		this.apellido = apellido;
 	}
 
-	public String getFechaDeNacimiento() {
+	public Date getFechaDeNacimiento() {
 		return fechaDeNacimiento;
 	}
 
-	public void setFechaDeNacimiento(String fechaDeNacimiento) {
+	public void setFechaDeNacimiento(Date fechaDeNacimiento) {
 		this.fechaDeNacimiento = fechaDeNacimiento;
 	}
 
-	public String getFechaIngreso() {
+	public Date getFechaIngreso() {
 		return fechaIngreso;
 	}
 
-	public void setFechaIngreso(String fechaIngreso) {
+	public void setFechaIngreso(Date fechaIngreso) {
 		this.fechaIngreso = fechaIngreso;
 	}
 
@@ -86,6 +93,15 @@ public class Alumno {
 	public void setNotas(ArrayList<Evaluacion> notas) {
 		this.notas = notas;
 	}
+	
+	public ArrayList<Materia> getMateriasAprobadas() {
+		return materiasAprobadas;
+	}
+
+	public ArrayList<Comision> getComisionesInscripto() {
+		return comisionesInscripto;
+	}
+	
 
 
 	public Boolean agregarNota(Evaluacion nota) {
@@ -111,12 +127,9 @@ public class Alumno {
 	public Boolean cargarNotaFinal(Evaluacion nota) { //---------------------
 		Boolean cargar=false;
 		for(int i=0;i<notas.size();i++) {
-			if(notas.get(i).getEstado().equals(EstadoExamen.aprobado) &&
-			  (notas.get(i).getTipoDeNota().equals(TipoDeNota.PrimerParc) ||
-			   notas.get(i).getTipoDeNota().equals(TipoDeNota.SegundoParc))) {
+			if((notas.get(i).getEstado().equals(EstadoExamen.aprobado) && notas.get(i).getTipoDeNota().equals(TipoDeNota.PrimerParc)) &&
+			  (notas.get(i).getEstado().equals(EstadoExamen.aprobado) && notas.get(i).getTipoDeNota().equals(TipoDeNota.SegundoParc))) {
 			return cargar= true;
-		} else {
-			return cargar= false;
 		}
 		}
 		return cargar;
@@ -129,5 +142,4 @@ public class Alumno {
 		}
 		return (Integer)promedio/notas.size();
 	}
-	
 }

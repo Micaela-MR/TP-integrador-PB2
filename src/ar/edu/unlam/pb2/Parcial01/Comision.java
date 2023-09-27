@@ -74,14 +74,8 @@ public class Comision {
 	
 
 	
-	public Boolean inscribirAlumnoAComision (Integer dniAlumno, Integer idComision){
-		
-		return false;
-	}
-	
-	public Boolean asignarAlumnoAComision (Alumno alumno) {
-		
-		return true;
+	public void inscribirAlumnoAComision (Alumno alumno){
+		this.alumnosComision.add(alumno);
 	}
 	
 	public Alumno buscarAlumnoPorId (Integer idAlumno) {
