@@ -50,7 +50,7 @@ public class testUniversidad {
 		Universidad unlam = new Universidad ("UNLaM");
 		Carrera desarrolloWeb = new Carrera (1,"Desarrollo Web");
 		Alumno alumno = new Alumno (1, 12345678, "Micaela", "Mendez", "03-06-2002");
-		Alumno alumno2 = new Alumno (2, 12345678, "Noelia", "Noe", "");
+		Alumno alumno2 = new Alumno (2, 12345678, "Noelia", "Noe", "03-06-2002");
 		
 		unlam.agregarCarrera(desarrolloWeb);
 		desarrolloWeb.agregarAlumno(alumno);
@@ -220,25 +220,25 @@ public class testUniversidad {
 		Profesor luciano = new Profesor (03, 37777777, "LucianoEzequiel", "Salgado");
 		Comision comision1 = new Comision (1, "T", segundoCuatri);
 		Alumno alumno = new Alumno (1, 43817073, "Micaela", "Mendez", "03-06-2002");
-		Alumno alumno2 = new Alumno (2, 11111112, "Noelia", "Noe", "");
+		Alumno alumno2 = new Alumno (2, 11111112, "Noelia", "Noe", "03-06-2002");
 		Alumno alumno3 = new Alumno (3, 12345678, "Micaela", "Mendez", "03-06-2002");
-		Alumno alumno4 = new Alumno (4, 23456789, "Noelia", "Noe", "");
+		Alumno alumno4 = new Alumno (4, 23456789, "Noelia", "Noe", "03-06-2002");
 		Alumno alumno5 = new Alumno (5, 34567890, "Micaela", "Mendez", "03-06-2002");
-		Alumno alumno6 = new Alumno (6, 45678901, "Noelia", "Noe", "");
+		Alumno alumno6 = new Alumno (6, 45678901, "Noelia", "Noe", "03-06-2002");
 		Alumno alumno7 = new Alumno (7, 56789012, "Micaela", "Mendez", "03-06-2002");
-		Alumno alumno8 = new Alumno (8, 67890123, "Noelia", "Noe", "");
+		Alumno alumno8 = new Alumno (8, 67890123, "Noelia", "Noe", "03-06-2002");
 		Alumno alumno9 = new Alumno (9, 78901234, "Micaela", "Mendez", "03-06-2002");
-		Alumno alumno10 = new Alumno (10, 89012345, "Noelia", "Noe", "");
+		Alumno alumno10 = new Alumno (10, 89012345, "Noelia", "Noe", "03-06-2002");
 		Alumno alumno11 = new Alumno (11, 90123456, "Micaela", "Mendez", "03-06-2002");
-		Alumno alumno12 = new Alumno (12, 01234567, "Noelia", "Noe", "");
+		Alumno alumno12 = new Alumno (12, 01234567, "Noelia", "Noe", "03-06-2002");
 		Alumno alumno13 = new Alumno (13, 11111111, "Micaela", "Mendez", "03-06-2002");
-		Alumno alumno14 = new Alumno (14, 22222222, "Noelia", "Noe", "");
+		Alumno alumno14 = new Alumno (14, 22222222, "Noelia", "Noe", "03-06-2002");
 		Alumno alumno15 = new Alumno (15, 33333333, "Micaela", "Mendez", "03-06-2002");
-		Alumno alumno16 = new Alumno (16, 44444444, "Noelia", "Noe", "");
+		Alumno alumno16 = new Alumno (16, 44444444, "Noelia", "Noe", "03-06-2002");
 		Alumno alumno17 = new Alumno (17, 55555555, "Micaela", "Mendez", "03-06-2002");
-		Alumno alumno18 = new Alumno (18, 66666666, "Noelia", "Noe", "");
+		Alumno alumno18 = new Alumno (18, 66666666, "Noelia", "Noe", "03-06-2002");
 		Alumno alumno19 = new Alumno (19, 77777777, "Micaela", "Mendez", "03-06-2002");
-		Alumno alumno20 = new Alumno (20, 88888888, "Noelia", "Noe", "");
+		Alumno alumno20 = new Alumno (20, 88888888, "Noelia", "Noe", "03-06-2002");
 		Alumno alumno21 = new Alumno (21, 99999999, "Micaela", "Mendez", "03-06-2002");
 		
 		unlam.agregarCicloLectivo(segundoCuatri);
@@ -269,6 +269,26 @@ public class testUniversidad {
 		pb2.agregarComision(comision1);
 		
 		desarrolloWeb.inscribirAlumnoAComision(43817073, 1,1);
+		desarrolloWeb.inscribirAlumnoAComision(11111112, 1,1);
+		desarrolloWeb.inscribirAlumnoAComision(12345678, 1,1);
+		desarrolloWeb.inscribirAlumnoAComision(23456789, 1,1);
+		desarrolloWeb.inscribirAlumnoAComision(34567890, 1,1);
+		desarrolloWeb.inscribirAlumnoAComision(45678901, 1,1);
+		desarrolloWeb.inscribirAlumnoAComision(56789012, 1,1);
+		desarrolloWeb.inscribirAlumnoAComision(67890123, 1,1);
+		desarrolloWeb.inscribirAlumnoAComision(78901234, 1,1);
+		desarrolloWeb.inscribirAlumnoAComision(89012345, 1,1);
+		desarrolloWeb.inscribirAlumnoAComision(90123456, 1,1);
+		desarrolloWeb.inscribirAlumnoAComision(01234567, 1,1);
+		desarrolloWeb.inscribirAlumnoAComision(11111111, 1,1);
+		desarrolloWeb.inscribirAlumnoAComision(22222222, 1,1);
+		desarrolloWeb.inscribirAlumnoAComision(33333333, 1,1);
+		desarrolloWeb.inscribirAlumnoAComision(44444444, 1,1);
+		desarrolloWeb.inscribirAlumnoAComision(55555555, 1,1);
+		desarrolloWeb.inscribirAlumnoAComision(66666666, 1,1);
+		desarrolloWeb.inscribirAlumnoAComision(77777777, 1,1);
+		desarrolloWeb.inscribirAlumnoAComision(88888888, 1,1);
+		desarrolloWeb.inscribirAlumnoAComision(99999999, 1,1);
 		
 		pb2.agregarDocentes(juanMa);
 		pb2.agregarDocentes(luciano);
@@ -344,17 +364,19 @@ public class testUniversidad {
 	@Test
 	public void inscribirAlumnoAComision() throws ParseException { //arreglar
 		Universidad unlam = new Universidad ("UNLaM");
-		CicloLectivo segundoCuatri = new CicloLectivo (1, "31-07-2023", "03-08-2023", "14-08-2023", "02-12-2023");
+		CicloLectivo segundoCuatri = new CicloLectivo (1, "31-07-2023", "03-08-2024", "14-08-2024", "02-12-2024");
 		Carrera desarrolloWeb = new Carrera (1,"Desarrollo Web");
 		Materia pb2 = new Materia (1, "PB2");
 		Comision comision1 = new Comision (1, "T", segundoCuatri);
 		Alumno alumno = new Alumno (1, 43817073, "Micaela", "Mendez", "03-06-2002");
+		Aula aula = new Aula (1, 30);
 		
 		unlam.agregarCicloLectivo(segundoCuatri);
 		unlam.agregarCarrera(desarrolloWeb);
 		desarrolloWeb.agregarMateria(pb2);
 		desarrolloWeb.agregarAlumno(alumno);
 		pb2.agregarComision(comision1);
+		comision1.asignarAulaAlaComision(aula);
 		
 		Boolean alumnoAsignado = desarrolloWeb.inscribirAlumnoAComision(43817073, 1,1);
 		

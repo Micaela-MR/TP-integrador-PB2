@@ -1,5 +1,6 @@
 package ar.edu.unlam.pb2.Parcial01;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -136,35 +137,47 @@ public class Carrera {
   		return seAgregoCorrelativa;
   	}
     
-    public Boolean inscribirAlumnoAComision (Integer dni,Integer idMateria, Integer idComision){
+    public Boolean inscribirAlumnoAComision (Integer dni,Integer idMateria, Integer idComision) throws ParseException{
 		  Boolean seAgrego = false;
+		  Boolean cumpleLosRequerimientos = false;
+		  
 		  Alumno nuevoAlumno = this.buscarAlumnoPordniQueDevuelveElAlumno(dni);
 		  Materia materia = this.buscarMateriaPorIdQueDevuelveLaMateria(idMateria);
 		  Comision comision=materia.buscarYDevolverComisionPorId(idComision);
-		  //SimpleDateFormat formato = new SimpleDateFormat("dd-M-yyyy");
+		  SimpleDateFormat formato = new SimpleDateFormat("dd-M-yyyy");
 	      Calendar calendar = Calendar.getInstance();
 	      Date fechaActual = calendar.getTime();
-	      //String formattedDate = formato.format(fechaActual);
+	      String formattedDate = formato.format(fechaActual);
+	      Date fechaFormateada = formato.parse(formattedDate);
 		  
 		  if (materia != null && nuevoAlumno!=null && comision!=null) {
 			  for(int i=0;i<materia.getComisiones().size();i++) {
 				  if(materia.correlativasPromocionadas()) {
-					  if(comision.getCiclo().getFechaFinalizacionInscripcion().after(fechaActual) && comision.getCiclo().getFechaInicioInscripcion().before(fechaActual)) {
-						  if(comision.getAula().getCantidadDeAlumnos() < comision.getAula().getCantidadDeAlumnos()) {
-							  if(!nuevoAlumno.getMateriasAprobadas().contains(materia)) {
+					  if(comision.getCiclo().getFechaFinalizacionInscripcion().after(fechaFormateada) && comision.getCiclo().getFechaInicioInscripcion().before(fechaFormateada)) {
+						  if(comision.getAlumnosComision().size() < comision.getAula().getCantidadDeAlumnos()) {
+							  cumpleLosRequerimientos = true;
+							  /*if(!nuevoAlumno.getMateriasAprobadas().contains(materia) || nuevoAlumno.getMateriasAprobadas().isEmpty()) {
 								  for(int j=0;j<nuevoAlumno.getComisionesInscripto().size();j++) {
 									  if(!nuevoAlumno.getComisionesInscripto().get(j).getTurno().equals(comision.getTurno())) {
-										  comision.inscribirAlumnoAComision(nuevoAlumno);
-										  seAgrego = true;
+										  
 									  }
 								  }
-								  
-								  
-							  }
+							  }*/
 						  }
 					  }
 				  }
 				  
+			  }
+		  }
+		  
+		  if(cumpleLosRequerimientos) {
+			  for(int i=0;i<materias.size();i++) {
+				  for(int j=0;i<materias.size();i++) {
+					  if(materias.get(i).getComisiones().get(j).getId().equals(idComision)) {
+						  materias.get(i).getComisiones().get(j).inscribirAlumnoAComision(nuevoAlumno);
+						  seAgrego=true;
+					  }
+				  }
 			  }
 		  }
 		  return seAgrego;

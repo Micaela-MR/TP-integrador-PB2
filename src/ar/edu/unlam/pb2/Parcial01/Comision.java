@@ -108,8 +108,8 @@ public class Comision {
 		}return asignarNuevoDocente;
 	}
 	
-	public Integer asignarAulaAlaComision(Integer idComision, Integer dniDocente) {
-		return 0;
+	public void asignarAulaAlaComision(Aula aula) {
+		this.aula = aula;
 	}
 	
 	
