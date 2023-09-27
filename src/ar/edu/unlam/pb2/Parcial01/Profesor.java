@@ -13,8 +13,6 @@ public class Profesor {
 		this.nombre = nombre;
 		this.apellido = apellido;
 	}
-	
-
 
 	public Integer getId() {
 		return id;
