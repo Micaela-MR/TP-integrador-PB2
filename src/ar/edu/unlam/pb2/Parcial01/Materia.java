@@ -7,7 +7,7 @@ public class Materia {
 	private Integer id;
 	private String nombre;
 	private ArrayList <Comision>comisiones;
-	private ArrayList <Profesor>docentes;
+	private ArrayList <Profesor>profesores;
 	private ArrayList <Materia> correlativas;
 	private EstadoDeLaMateria estadoMateria;
 	
@@ -16,7 +16,7 @@ public class Materia {
 		this.id = id;
 		this.nombre = nombre;
 		this.comisiones = new ArrayList<Comision>();
-		this.docentes = new ArrayList<Profesor>();
+		this.profesores = new ArrayList<Profesor>();
 		this.correlativas  = new ArrayList<Materia>();
 	}
 
@@ -51,12 +51,12 @@ public class Materia {
 
 
 	public ArrayList<Profesor> getDocentes() {
-		return docentes;
+		return profesores;
 	}
 
 
 	public void setDocentes(ArrayList<Profesor> docentes) {
-		this.docentes = docentes;
+		this.profesores = docentes;
 	}
 
 	
@@ -133,8 +133,8 @@ public class Materia {
 	public Boolean agregarDocentes(Profesor docenteAgregar) {
 		 Boolean seAgrego = false;	
 			
-	    	if(docentes.isEmpty() || !this.buscarDocentePorDni(docenteAgregar)){	
-	    			docentes.add(docenteAgregar);
+	    	if(profesores.isEmpty() || !this.buscarDocentePorDni(docenteAgregar)){	
+	    			profesores.add(docenteAgregar);
 	    			seAgrego = true;
 	    		}	    	
 		   
@@ -144,8 +144,8 @@ public class Materia {
 	
 	public Boolean buscarDocentePorDni(Profesor docente) {
 		Boolean profeEncontradoPorDni = false;
-		for (int i = 0; i < docentes.size(); i++) {
-			if(this.docentes.get(i).getDni().equals(docente.getDni())) {
+		for (int i = 0; i < profesores.size(); i++) {
+			if(this.profesores.get(i).getDni().equals(docente.getDni())) {
 				profeEncontradoPorDni = true;
 			}
 		}
@@ -156,9 +156,9 @@ public class Materia {
 		Boolean seAsignoElProfesor=false;
 		Profesor docenteAAgregar=null;
 		
-		for(int i = 0; i < docentes.size(); i++) {
-			if(this.docentes.get(i).getDni().equals(dniDocente)) {
-				docenteAAgregar = docentes.get(i);
+		for(int i = 0; i < profesores.size(); i++) {
+			if(this.profesores.get(i).getDni().equals(dniDocente)) {
+				docenteAAgregar = profesores.get(i);
 			}
 		}
 		
