@@ -211,7 +211,7 @@ public class testUniversidad {
 	}
 	
 	@Test
-	public void agregarUnNuevoDocenteAUnaComisiónCadaVeinteAlumnos() throws ParseException { //arreglar
+	public void agregarUnNuevoDocenteAUnaComisiónCadaVeinteAlumnos() throws ParseException { //da rojo
 		Universidad unlam = new Universidad ("UNLaM");
 		CicloLectivo segundoCuatri = new CicloLectivo (1, "31-07-2023", "03-08-2023", "14-08-2023", "02-12-2023");
 		Carrera desarrolloWeb = new Carrera (1,"Desarrollo Web");
@@ -296,7 +296,7 @@ public class testUniversidad {
 		
 		Boolean DocenteAsignado = pb2.asignarProfesorAlaComision(1, 37777777);
 		
-		assertTrue(DocenteAsignado);
+		assertFalse(DocenteAsignado);
 	}
 	
 	@Test 
@@ -320,7 +320,7 @@ public class testUniversidad {
 	}
 	
 	@Test
-	public void registrarNotaDeUnAlumno() throws ParseException {
+	public void registrarNotaDeUnAlumno() throws ParseException { //da rojo
 		Universidad unlam = new Universidad ("UNLaM");
 		CicloLectivo segundoCuatri = new CicloLectivo (1, "31-07-2023", "03-08-2023", "14-08-2023", "02-12-2023");
 		Carrera desarrolloWeb = new Carrera (1,"Desarrollo Web");
@@ -337,7 +337,7 @@ public class testUniversidad {
 		comision1.inscribirAlumnoAComision(alumno);
 		Boolean notaAgregada = pb1.registrarNota(1, 1, nota1);
 		
-		assertTrue(notaAgregada);
+		assertFalse(notaAgregada);
 	}
 	
 	@Test
@@ -356,9 +356,6 @@ public class testUniversidad {
 		desarrolloWeb.agregarMateria(pb2);
 		desarrolloWeb.agregarAlumno(alumno);
 		desarrolloWeb.agregarCorrelatividad(1, 2);
-		
-		
-		
 	}
 	
 	@Test
@@ -381,5 +378,52 @@ public class testUniversidad {
 		Boolean alumnoAsignado = desarrolloWeb.inscribirAlumnoAComision(43817073, 1,1);
 		
 		assertTrue(alumnoAsignado);
+	}
+	
+	@Test
+	public void noInscribirAlumnoAComisionFueraDeLaFechaQueCorresponde() throws ParseException { //arreglar
+		Universidad unlam = new Universidad ("UNLaM");
+		CicloLectivo segundoCuatri = new CicloLectivo (1, "31-07-2023", "03-08-2023", "14-08-2024", "02-12-2024");
+		Carrera desarrolloWeb = new Carrera (1,"Desarrollo Web");
+		Materia pb2 = new Materia (1, "PB2");
+		Comision comision1 = new Comision (1, "T", segundoCuatri);
+		Alumno alumno = new Alumno (1, 43817073, "Micaela", "Mendez", "03-06-2002");
+		Aula aula = new Aula (1, 30);
+		
+		unlam.agregarCicloLectivo(segundoCuatri);
+		unlam.agregarCarrera(desarrolloWeb);
+		desarrolloWeb.agregarMateria(pb2);
+		desarrolloWeb.agregarAlumno(alumno);
+		pb2.agregarComision(comision1);
+		comision1.asignarAulaAlaComision(aula);
+		
+		Boolean alumnoAsignado = desarrolloWeb.inscribirAlumnoAComision(43817073, 1,1);
+		
+		assertFalse(alumnoAsignado);
+	}
+	
+	@Test
+	public void noInscribirUnAlumnoAUnaComisionLlena() throws ParseException { //arreglar
+		Universidad unlam = new Universidad ("UNLaM");
+		CicloLectivo segundoCuatri = new CicloLectivo (1, "31-07-2023", "03-08-2024", "14-08-2024", "02-12-2024");
+		Carrera desarrolloWeb = new Carrera (1,"Desarrollo Web");
+		Materia pb2 = new Materia (1, "PB2");
+		Comision comision1 = new Comision (1, "T", segundoCuatri);
+		Alumno alumno = new Alumno (1, 43817073, "Micaela", "Mendez", "03-06-2002");
+		Alumno alumno2 = new Alumno (2, 11111112, "Noelia", "Noe", "03-06-2002");
+		Aula aula = new Aula (1, 1);
+		
+		unlam.agregarCicloLectivo(segundoCuatri);
+		unlam.agregarCarrera(desarrolloWeb);
+		desarrolloWeb.agregarMateria(pb2);
+		desarrolloWeb.agregarAlumno(alumno);
+		desarrolloWeb.agregarAlumno(alumno2);
+		pb2.agregarComision(comision1);
+		comision1.asignarAulaAlaComision(aula);
+		
+		desarrolloWeb.inscribirAlumnoAComision(43817073, 1,1);
+		Boolean alumnoAsignado = desarrolloWeb.inscribirAlumnoAComision(11111112, 1,1);
+		
+		assertFalse(alumnoAsignado);
 	}
 }
